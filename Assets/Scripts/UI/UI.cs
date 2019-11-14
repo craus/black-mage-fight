@@ -14,6 +14,7 @@ public class UI : Singletone<UI> {
     public Warning soloWarning;
     public GameObject profileName;
     public AudioSource battleMusic;
+	public GameObject arrowButtons;
 
 	[Space]
     public GameObject heroHealth;
@@ -71,7 +72,11 @@ public class UI : Singletone<UI> {
     public List<Blur> blur;
 
     void Awake() {
-        volumes.Init();
+		volumes.Init();
+		arrowButtons.SetActive(false);
+		#if UNITY_ANDROID
+		arrowButtons.SetActive(true);
+		#endif
     }
 
     void Start() {

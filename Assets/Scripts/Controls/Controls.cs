@@ -19,6 +19,13 @@ public class Controls : MonoBehaviour {
     public Button left;
     public Button right;
 
+	public Vector3 anchorPosition;
+	public float mouseStep = 20;
+	public float singleMouseStep = 10;
+	public Vector2 delta;
+	public int maxMouseCharges = 1;
+	public int mouseCharges = 1;
+
 	public List<MonoBehaviour> lockers;
 
 	public UnityEvent ready;
@@ -109,6 +116,19 @@ public class Controls : MonoBehaviour {
 		#endif 
 	}
 
+	public void MouseStep() {
+		if (delta.x > Math.Abs(delta.y)) {
+			Move(new IntVector2(0, 1));
+		} else if (delta.x < -Math.Abs(delta.y)) {
+			Move(new IntVector2(0, -1));
+		} else if (delta.y < -Math.Abs(delta.x)) {
+			Move(new IntVector2(1, 0));
+		} else if (delta.y > Math.Abs(delta.x)) {
+			Move(new IntVector2(-1, 0));
+		}
+		anchorPosition += delta.normalized.withZ(0) * mouseStep;
+	}
+
     void Update() {
         if (Input.GetKeyDown(KeyCode.R) && Input.GetKey(KeyCode.LeftShift)) {
             GameManager.instance.DropSaveFile();
@@ -171,5 +191,23 @@ public class Controls : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             UI.instance.Escape();
         }
+
+		if (Input.GetMouseButtonDown(0)) {
+			anchorPosition = Input.mousePosition;
+			mouseCharges = maxMouseCharges;
+		}
+		delta = Input.mousePosition - anchorPosition;
+		if (Input.GetMouseButton(0)) {
+			if (mouseCharges > 0 && delta.magnitude > mouseStep) {
+				MouseStep();
+				--mouseCharges;
+			}
+		}
+		if (Input.GetMouseButtonUp(0)) {
+			if (mouseCharges > 0 && delta.magnitude > singleMouseStep) {
+				MouseStep();
+				--mouseCharges;
+			}
+		}
     }
 }

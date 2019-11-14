@@ -158,7 +158,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.Company.ProductName
+    Android: com.Craus.BlackMage
     Standalone: unity.DefaultCompany.BlackMageFight
     Tizen: com.Company.ProductName
     iOS: com.Company.ProductName
