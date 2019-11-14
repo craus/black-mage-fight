@@ -15,9 +15,19 @@ public class GameLevels : MonoBehaviour {
 
     public static GameLevels instance;
 
+	void FindCommonLevels() {
+		commonLevels = commonLevelsFolder.Children().Select(c => c.GetComponent<Level>()).ToList();
+	}
+
     void Awake() {
         instance = this;
-		commonLevels = commonLevelsFolder.Children().Select(c => c.GetComponent<Level>()).ToList();
+		FindCommonLevels();
         transform.Children().ForEach(c => c.gameObject.SetActive(false));
     }
+
+	[ContextMenu("Write Levels")]
+	public void WriteLevelsList() {
+		FindCommonLevels();
+		Debug.LogFormat("Levels:\n{0}", commonLevels.ExtToString("\n", "{0}", x => x.name));
+	}
 }

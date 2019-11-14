@@ -1,0 +1,48 @@
+HeartStopper
+Poison 5-4 d1
+Statues t3 n6
+Swapper
+Fire
+Shotgun
+SeeNoEvil
+Charge
+Monsters + HeartStopper
+Skulls speed 3 too
+Charge + Doors + HeartStopper (1)
+Monsters with hearts
+Evil Eyes + Statues
+Fire + Poison
+Timed Bombs + HeartStopper + Hearts
+Poison + Skulls
+Fire + Doors
+Charge + Evil Eyes
+Keys
+Monsters
+Charge + Doors
+Skulls + Statues
+Monsters + Evil Eyes
+Ice + Fire
+Letters + Portal
+Shotgun + statues
+Poison + heartstopper
+Bombs
+Bombs + teleport
+Letters + Poison
+Shotgun + Doors
+Ice + HeartStopper + Hearts
+Swapper + Statues
+Letters + HeartStopper
+Shotgun + poison
+Illusions
+Skulls + Swapper
+SeeNoEvil + HeartStopper
+Bombs + Ice
+Fire + Monsters
+Monsters + Ultimate Bombs
+Monsters + Timed Bombs
+HeartStopper + Teleport
+Skulls + Ice speed 3
+Ultimate Bombs + Swapper
+Bombs + poison - very hard
+Small Bombs + Heartstopper
+Doors + Skulls
