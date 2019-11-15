@@ -9,6 +9,9 @@ public class DifficultyScaled : IntValueProvider
 
 	public override int Value {
 		get {
+			if (GameManager.instance.gameState.CurrentRun == null) {
+				return values[0];
+			}
 			return values[GameManager.instance.gameState.CurrentRun.difficulty];
 		}
 	}

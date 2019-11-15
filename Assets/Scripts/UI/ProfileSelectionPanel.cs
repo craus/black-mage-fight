@@ -24,9 +24,11 @@ public class ProfileSelectionPanel : MonoBehaviour
     }
 
 	public void RemoveProfile(int id) {
-		GameManager.instance.gameState.profiles[id] = new Profile();
-		GameManager.instance.Save();
-		GameManager.instance.UpdateState();
+		UI.instance.warning.Show("Профиль пропадёт полностью! Продолжить?").Then(() => {
+			GameManager.instance.gameState.profiles[id] = new Profile();
+			GameManager.instance.Save();
+			GameManager.instance.UpdateState();
+		});
 	}
 
     public void SelectProfile(int id) {
