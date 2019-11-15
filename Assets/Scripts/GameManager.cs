@@ -81,11 +81,14 @@ public class GameManager : Singletone<GameManager> {
         }
     }
 
-	public static void Continue() {
-		if (GameManager.instance.Won()) {
-			GameManager.instance.ConfirmWin();
+	public void Continue() {
+		if (!GameOver()) {
+			return;
+		}
+		if (Won()) {
+			ConfirmWin();
 		} else {
-			GameManager.instance.ConfirmLose();
+			ConfirmLose();
 		}
 	}
 

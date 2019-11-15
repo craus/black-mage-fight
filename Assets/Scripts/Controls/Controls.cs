@@ -133,8 +133,8 @@ public class Controls : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.R) && Input.GetKey(KeyCode.LeftShift)) {
             GameManager.instance.DropSaveFile();
         }
-        if (Input.GetKeyDown(KeyCode.Space) && GameManager.instance.GameOver()) {
-			GameManager.Continue();
+        if (Input.GetKeyDown(KeyCode.Space)) {
+			GameManager.instance.Continue();
         }
         if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0) {
             Cursor.visible = true;

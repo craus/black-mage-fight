@@ -66,6 +66,8 @@ public class UI : Singletone<UI> {
     public GameObject loseMessage;
     public GameObject winMessage;
 
+	public GameObject mobileArrows;
+	public GameObject mobileContinue;
 
     public SoundControls volumes;
 
@@ -134,17 +136,23 @@ public class UI : Singletone<UI> {
     public void Win() {
         blur.ForEach(b => b.enabled = true);
         winMessage.SetActive(true);
+		mobileContinue.SetActive(true);
+		mobileArrows.SetActive(false);
     }
 
     public void Lose() {
         blur.ForEach(b => b.enabled = true);
-        loseMessage.SetActive(true);
+		loseMessage.SetActive(true);
+		mobileContinue.SetActive(true);
+		mobileArrows.SetActive(false);
     }
 
     public void UpdateHUD() {
         blur.ForEach(b => b.enabled = false);
         winMessage.SetActive(false);
-        loseMessage.SetActive(false);
+		loseMessage.SetActive(false);
+		mobileContinue.SetActive(false);
+		mobileArrows.SetActive(true);
     }
 
 	public bool RandomBombs() {
