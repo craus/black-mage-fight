@@ -134,11 +134,7 @@ public class Controls : MonoBehaviour {
             GameManager.instance.DropSaveFile();
         }
         if (Input.GetKeyDown(KeyCode.Space) && GameManager.instance.GameOver()) {
-            if (GameManager.instance.Won()) {
-                GameManager.instance.ConfirmWin();
-            } else {
-                GameManager.instance.ConfirmLose();
-            }
+			GameManager.Continue();
         }
         if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0) {
             Cursor.visible = true;
