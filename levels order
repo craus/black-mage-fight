@@ -2,25 +2,25 @@
 
 HEARTS
 
-HeartStopper
+HeartStopper [1]
 
 SMALL BOMBS
 
-Small Bombs + Heartstopper
+Small Bombs + Heartstopper [2]
 Timed Bombs + HeartStopper + Hearts
 
 POISON
 
-Poison 5-4 d1
+Poison 5-4 d1 [3]
 Poison + heartstopper
 
 STATUES
 
-Statues t3 n6
+Statues t3 n6 [4]
 
 SHOTGUN
 
-Shotgun
+Shotgun [5]
 Shotgun + statues
 Shotgun + poison
 
@@ -30,12 +30,12 @@ Shotgun + poison
 
 FIRE
 
-Fire
+Fire [7]
 Fire + Poison
 
 MONSTERS
 
-Monsters
+Monsters [6]
 Monsters + HeartStopper
 Monsters with hearts
 Fire + Monsters
