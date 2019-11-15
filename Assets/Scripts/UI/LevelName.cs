@@ -6,6 +6,9 @@ public class LevelName : MonoBehaviour
 	public Text text;
 
 	public void Update() {
+		if (GameManager.instance.gameState.CurrentRun == null) {
+			return;
+		}
 		text.text = string.Format(
 			"{0} – {1} ({2}/{3})", 
 			GameLevels.instance.difficulties[GameManager.instance.gameState.CurrentRun.difficulty].name,

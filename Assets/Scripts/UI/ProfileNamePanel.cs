@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class ProfileNamePanel : MonoBehaviour
+public class ProfileNamePanel : Singletone<ProfileNamePanel>
 {   
     public Text defaultName;
     public InputField inputField;

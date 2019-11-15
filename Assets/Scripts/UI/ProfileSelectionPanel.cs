@@ -23,13 +23,16 @@ public class ProfileSelectionPanel : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+	public void RemoveProfile(int id) {
+		GameManager.instance.gameState.profiles[id] = new Profile();
+		GameManager.instance.Save();
+		GameManager.instance.UpdateState();
+	}
 
     public void SelectProfile(int id) {
         if (Input.GetKey(KeyCode.LeftShift)) {
-            GameManager.instance.gameState.profiles[id] = new Profile();
-            GameManager.instance.Save();
-            GameManager.instance.UpdateState();
-            return;
+			RemoveProfile(id);
+			return;
         }
         if (GameManager.instance.gameState.currentProfileIndex == id) {
             UI.instance.CloseAll();

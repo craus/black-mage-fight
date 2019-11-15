@@ -103,7 +103,17 @@ public class UI : Singletone<UI> {
     }
 
     public void Escape() {
-        if (menu.gameObject.activeSelf) {
+		if (GameManager.instance.gameState.CurrentProfile == null) {
+			return;
+		}
+		if (profileName.activeSelf) {
+			ProfileNamePanel.instance.Go();
+			return;
+		}
+		if (difficultySelector.gameObject.activeSelf) {
+			return;
+		}
+		if (menu.gameObject.activeSelf) {
             CloseAll();
             return;
         } 
