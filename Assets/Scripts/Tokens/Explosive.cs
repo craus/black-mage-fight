@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using RSG;
 using System.Linq;
 using System.Collections.Generic;
+using System;
 
 [RequireComponent(typeof(Figure))]
 public class Explosive : MonoBehaviour
@@ -35,7 +36,7 @@ public class Explosive : MonoBehaviour
 		});
 	}
 
-    void Explosion(Cell cell) {
+	void CallExplosionListeners(Cell cell, bool actuallyExplode, Action<Cell> callback) {
         if (cell == null) {
             return;
         }
@@ -43,7 +44,7 @@ public class Explosive : MonoBehaviour
             cell.Figures.ForEach(f => {
                 var onExplode = f.GetComponentInChildren<OnExplode>();
                 if (onExplode) {
-                    onExplode.run.Invoke();
+					onExplode.Run(actuallyExplode, callback);
                 }
             });
         }
@@ -55,16 +56,38 @@ public class Explosive : MonoBehaviour
 		).ToList();
 	}
 
-    public void Explode() {
-        if (!gameObject.activeSelf) {
-            return;
-        }
+	public void Explode() {
+		ExplodeOnCells(true, c => {});
+	}
+
+    private void ExplodeInternal() {
 		this.TryPlay(SoundManager.instance.explosion);
-        var cell = figure.Position;
+
         gameObject.SetActive(false);
         Destroy(gameObject);
-        PlayExplosionAnimation(cell);
 
-		ExplosionArea().ForEach(Explosion);
+		PlayExplosionAnimation(figure.Position);
     }
+
+	private bool explodingOnCellsRightNow = false;
+	public void ExplodeOnCells(bool actuallyExplode, Action<Cell> callback) {
+		if (!gameObject.activeSelf) {
+			return;
+		}
+		if (explodingOnCellsRightNow) {
+			return;
+		}
+		explodingOnCellsRightNow = true;
+
+		if (actuallyExplode) {
+			ExplodeInternal();
+		}
+
+		ExplosionArea().ForEach(cell => {
+			callback(cell);
+			CallExplosionListeners(cell, actuallyExplode, callback);
+		});
+
+		explodingOnCellsRightNow = false;
+	}
 }

@@ -13,7 +13,6 @@ public class SmallBombHelper : MonoBehaviour
 	public SpriteRenderer dangerSprite;
 
 	public Counter counter;
-
 	public Explosive explosive;
 
 	public void Awake() {
@@ -22,23 +21,19 @@ public class SmallBombHelper : MonoBehaviour
 	}
 
 	public void Start() {
-		counter.onDecrement.AddListener(OnCounterDecrement);
 		UpdateSprites();
 	}
 
 	public void UpdateSprites() {
 		var danger = (counter.value == 1);
+		Debug.LogFormat("{1} {0}", counter.transform.Path(), counter.value);
 		sprite.gameObject.SetActive(!danger);
 		dangerSprite.gameObject.SetActive(danger);
 
-		//if (danger) {
-		//	explosive.ExplosionArea().ForEach(cell => {
-		//		cell.ChangeColor(Color.yellow);
-		//	});
-		//}
-	}
-
-	public void OnCounterDecrement() {
-		UpdateSprites();
+		if (danger) {
+			explosive.ExplodeOnCells(false, cell => {
+				cell.ChangeColor(Color.yellow);
+			});
+		}
 	}
 }
