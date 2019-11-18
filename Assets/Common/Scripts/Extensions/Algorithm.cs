@@ -13,7 +13,7 @@ public static class Algorithm
 	public static float BinarySearch(float min, float max, Func<float, bool> bigEnough) {
 		var result = min;
 		var step = max - min;
-		while (step > 1e-9) {
+		while (step > float.Epsilon) {
 			if (!bigEnough(result + step)) {
 				result += step;
 			}
