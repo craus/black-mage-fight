@@ -10,6 +10,9 @@ public class OnExplode : MonoBehaviour
 
 	public void Run(bool actuallyExplode = true, Action<Cell> callback = null) {
 		callback = callback ?? (c => {});
+		if (actuallyExplode) {
+			run.Invoke();
+		}
 		runOnCells.Invoke(actuallyExplode, callback);
 	}
 }
