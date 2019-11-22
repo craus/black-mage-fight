@@ -8,6 +8,8 @@ public class Spawner : Token
 {
     public GameObject sample;
 
+	public int id = 0;
+
     public List<GameObject> spawnedObjects;
 
     public void Start() {
@@ -15,7 +17,9 @@ public class Spawner : Token
     }
 
     public void Spawn() {
+		id++;
         var spawn = Instantiate(sample);
+		spawn.name = "{0} #{1}".i(spawn.name, id);
         spawn.SetActive(true);
         spawnedObjects.Add(spawn);
         spawn.AddComponent<SpawnedBy>().spawner = this;

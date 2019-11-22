@@ -171,6 +171,10 @@ public static class Extensions
         return result;
     }
 
+	public static T MaxBy<T>(this IEnumerable<T> collection, Func<T, float> criteria) {
+		return collection.MinBy(x => -criteria(x));
+	}	
+
     public static float ExtMax<T>(this IEnumerable<T> collection, Func<T, float> criteria) {
         if (collection.Count() == 0) {
             return float.NegativeInfinity;
