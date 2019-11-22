@@ -50,14 +50,14 @@ public class LetterChecker : MonoBehaviour
 		return CheckPosition(x, y, 0);
 	}
 
-	public void Check() {
+	public IPromise Check() {
 		var result = new List<Letter>();
 		for (int i = 0; i < Board.instance.cells.GetLength(0); i++) {
 			for (int j = 0; j < Board.instance.cells.GetLength(1); j++) {
 				result.AddRange(CheckPosition(i, j));
 			}
 		}
-		result.ForEach(l => l.Success());
+		return Promise.All(result.Select(l => l.Success()));
 	}
 
 	public IPromise Change() {
@@ -71,8 +71,9 @@ public class LetterChecker : MonoBehaviour
 		if (check != null) {
 			var checking = check;
 			check = null;
-			Check();
-			checking.Resolve();
+			Check().Then(() => {
+				checking.Resolve();
+			});
 		}
 	}
 }

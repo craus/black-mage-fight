@@ -28,6 +28,8 @@ public class Controls : MonoBehaviour {
 
 	public List<MonoBehaviour> lockers;
 
+	public event Action onUnlocked = () => { };
+
 	public UnityEvent ready;
 
 	public void Lock(MonoBehaviour locker) {
@@ -36,6 +38,9 @@ public class Controls : MonoBehaviour {
 
 	public void Unlock(MonoBehaviour locker) {
 		lockers.Remove(locker);
+		if (!Locked()) {
+			onUnlocked.Invoke();
+		}
 	}
 
 	public bool Locked() {
