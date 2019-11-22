@@ -43,6 +43,12 @@ public class LetterLine : MonoBehaviour
 		Check(0, 1, 1);
 		Check(-1, 0, 2);
 		Check(0, -1, 3);
+		if (checker.diagonal) {
+			Check(1, 1, 4);
+			Check(1, -1, 5);
+			Check(-1, 1, 6);
+			Check(-1, -1, 7);
+		}
 	}
 
 	void OnDestroy() {
