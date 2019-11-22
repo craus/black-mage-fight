@@ -11,7 +11,8 @@ public class PlaySound : Effect
 	public float toPercent = 1;
 
     public override void Run() {
-        target.time = target.clip.length - last;
+		var fromTime = Mathf.Max(fromPercent * target.clip.length, from, target.clip.length - last);
+		target.time = fromTime;
         target.Play();
     }
 }
