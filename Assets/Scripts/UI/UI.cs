@@ -225,7 +225,14 @@ public class UI : Singletone<UI> {
 
 		keysUI.SetActive(KeyCounter.instance);
 
-        battleMusic.mute = menu.gameObject.activeSelf || Intermission.active || customLevel.activeSelf || GameManager.instance.GameOver() || GameManager.instance.gameState.CurrentRun == null;
+		if (BattleMusicChanger.instance.current != null) {
+			BattleMusicChanger.instance.current.mute = 
+				menu.gameObject.activeSelf || 
+				Intermission.active || 
+				customLevel.activeSelf || 
+				GameManager.instance.GameOver() || 
+				GameManager.instance.gameState.CurrentRun == null;
+		}
 
 		if (DoorSpawner.instance) {
 			doorCreationPeriodic.UpdatePeriodic(DoorSpawner.instance.periodicCounter);
