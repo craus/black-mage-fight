@@ -9,6 +9,8 @@ using System;
 [RequireComponent(typeof(Figure))]
 public class Explosive : MonoBehaviour
 {
+	public CellsColorChanger colorChanger;
+
     Figure figure;
     public GameObject explosionSample;
     public AudioSource explosionSound;
@@ -24,15 +26,19 @@ public class Explosive : MonoBehaviour
 		explosion.transform.localScale = Vector3.one * Mathf.Sqrt(squareRadius) * explosionSpriteRadius;
 		explosion.SetActive(true);
 		explosion.transform.position = from.transform.position;
-		ExplosionArea().ForEach(cell => {
-			cell.ChangeColor(Color.red);
-		});
+		if (colorChanger != null) {
+			ExplosionArea().ForEach(cell => {
+				colorChanger.Paint(cell);
+			});
+		}
 
 		return TimeManager.Wait(0.1f).Then(() => {
 			Destroy(explosion);
-			ExplosionArea().ForEach(cell => {
-				cell.RestoreColor();
-			});
+			if (colorChanger != null) {
+				ExplosionArea().ForEach(cell => {
+					colorChanger.Unpaint(cell);
+				});
+			}
 		});
 	}
 
