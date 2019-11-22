@@ -10,6 +10,7 @@ public class Counter : Token
     public int value = 0;
     public int maxValue = 0;
 	public IntValueProvider maxValueProvider;
+	public bool startOnMax = false;
 
 	public Mark mark;
 
@@ -22,7 +23,8 @@ public class Counter : Token
     public UnityEvent onMax;
     public UnityEvent onIncrement;
     public UnityEvent onZero;
-    public UnityEvent onDecrement;
+	public UnityEvent onDecrement;
+	public UnityEvent onChange;
 
     public void Increment() {
         if (value == MaxValue) {
@@ -30,6 +32,7 @@ public class Counter : Token
         }
         value += 1;
         onIncrement.Invoke();
+		onChange.Invoke();
         if (value == MaxValue) {
             onMax.Invoke();
         }
@@ -40,6 +43,7 @@ public class Counter : Token
             return;
         }
         value -= 1;
+		onChange.Invoke();
         onDecrement.Invoke();
         if (value == 0) {
             onZero.Invoke();
@@ -48,6 +52,7 @@ public class Counter : Token
 
     public void Drop() {
         value = 0;
+		onChange.Invoke();
     }
 
     public void ShowCounter() {
@@ -62,6 +67,13 @@ public class Counter : Token
 	public void Awake() {
 		if (mark) {
 			counters[mark] = this;
+		}
+	}
+
+	public void Start() {
+		if (startOnMax) {
+			value = MaxValue;
+			onChange.Invoke();
 		}
 	}
 }
