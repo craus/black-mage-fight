@@ -23,6 +23,9 @@ public class TimeManager : Singletone<TimeManager>
     }
 
     public static IPromise Wait(float seconds) {
+		if (DebugManager.instance.slowAnimations) {
+			seconds *= 10;
+		}
         return instance.promiseTimer.WaitFor(seconds);
     }
 }

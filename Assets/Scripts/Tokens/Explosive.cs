@@ -42,7 +42,12 @@ public class Explosive : MonoBehaviour
 		});
 	}
 
-	void CallExplosionListeners(Cell cell, bool actuallyExplode, Action<Cell> callback) {
+	void CallExplosionListeners(
+		Cell cell, 
+		bool actuallyExplode, 
+		Action<Cell> callbackCell,
+		Action<IPromise> callbackWait
+	) {
         if (cell == null) {
             return;
         }
@@ -50,7 +55,7 @@ public class Explosive : MonoBehaviour
             cell.Figures.ForEach(f => {
                 var onExplode = f.GetComponentInChildren<OnExplode>();
                 if (onExplode) {
-					onExplode.Run(actuallyExplode, callback);
+					onExplode.Run(actuallyExplode, callbackCell, callbackWait);
                 }
             });
         }
@@ -62,37 +67,52 @@ public class Explosive : MonoBehaviour
 		).ToList();
 	}
 
-	public void Explode() {
-		ExplodeOnCells(true, c => {});
+	public void LongExplode(Action<IPromise> callback) {
+        ExplodeOnCells(true, c => { }, callback, false);
 	}
 
-    private void ExplodeInternal() {
+	public void Explode() {
+		ExplodeOnCells(true, c => { }, wait => { }, false);
+	}
+
+	private IPromise ExplodeInternal() {
 		this.TryPlay(SoundManager.instance.explosion);
 
         gameObject.SetActive(false);
         Destroy(gameObject);
 
-		PlayExplosionAnimation(figure.Position);
+		return PlayExplosionAnimation(figure.Position);
     }
 
+	public void ExplodeOnCells(bool actuallyExplode, Action<Cell> explodeCell, Action<IPromise> wait) {
+		ExplodeOnCells(actuallyExplode, explodeCell, wait, true);
+	}
+
 	private bool explodingOnCellsRightNow = false;
-	public void ExplodeOnCells(bool actuallyExplode, Action<Cell> callback) {
-		if (!gameObject.activeSelf) {
+	private bool goingToExplode = false;
+	public void ExplodeOnCells(bool actuallyExplode, Action<Cell> explodeCell, Action<IPromise> wait, bool delay) {
+		if (!gameObject.activeSelf || goingToExplode) {
 			return;
 		}
 		if (explodingOnCellsRightNow) {
 			return;
 		}
 		explodingOnCellsRightNow = true;
-
 		if (actuallyExplode) {
-			ExplodeInternal();
+			goingToExplode = true;
 		}
 
-		ExplosionArea().ForEach(cell => {
-			callback(cell);
-			CallExplosionListeners(cell, actuallyExplode, callback);
+		IPromise explosionFinished = (actuallyExplode && delay ? TimeManager.Wait(0.01f) : Promise.Resolved()).Then(() => {
+			var exploded = actuallyExplode ? ExplodeInternal() : Promise.Resolved();
+			ExplosionArea().ForEach(cell => {
+				explodeCell(cell);
+				CallExplosionListeners(cell, actuallyExplode, explodeCell, wait);
+			});
+			exploded.Done();
+			//return exploded;
 		});
+		//explosionFinished.Done();
+		wait(explosionFinished);
 
 		explodingOnCellsRightNow = false;
 	}

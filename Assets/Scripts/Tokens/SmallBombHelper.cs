@@ -22,7 +22,7 @@ public class SmallBombHelper : MonoBehaviour
 					var timer = f.GetComponent<Counter>();
 					var explosive = f.GetComponent<Explosive>();
 					if (timer.value == 1) {
-						explosive.ExplodeOnCells(false, cell => colorChanger.Paint(cell));
+						explosive.ExplodeOnCells(false, cell => colorChanger.Paint(cell), wait => { });
 					}
 				}
 			});

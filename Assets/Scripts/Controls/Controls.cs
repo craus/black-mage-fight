@@ -47,6 +47,11 @@ public class Controls : MonoBehaviour {
 		return lockers.Count > 0;
 	}
 
+	public void Reset() {
+		lockers.Clear();
+		commands = Promise.Resolved();
+	}
+
     void Awake() {
         instance = this;
 		Ready();
@@ -77,7 +82,7 @@ public class Controls : MonoBehaviour {
 
 	void UpdateAfter(Promise newAfter) {
 		if (after != null && after.CurState == PromiseState.Pending) {
-			after.Reject(new Exception("Interrupted by new command"));
+			after.Reject(new RejectableException("Interrupted by new command"));
 		}
 		after = newAfter;
 		after.Then(() => OnReady()).Done();

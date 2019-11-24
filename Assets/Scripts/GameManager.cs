@@ -175,6 +175,7 @@ public class GameManager : Singletone<GameManager> {
     }
 
     public void RunLevel(Level level, bool restarted = false) {
+		Controls.instance.Reset();
 		Intermission.active = false;
         if (gameState.CurrentRun.continuousRun) {
             if (gameState.CurrentRun.triesLeft <= 0) {

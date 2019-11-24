@@ -29,6 +29,9 @@ public class AnimationsManager : MonoBehaviour
     }
 
     static IEnumerator MoveCoroutine(Transform t, Vector3 a, Vector3 b, float v, Promise moved) {
+		if (DebugManager.instance.slowAnimations) {
+			v /= 10;
+		}
         Vector3 velocity = (b-a).normalized*v;
         float startTime = TimeManager.Time();
         float endTime = startTime + (b-a).magnitude / v;

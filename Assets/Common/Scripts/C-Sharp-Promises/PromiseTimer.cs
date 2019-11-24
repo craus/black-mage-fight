@@ -141,6 +141,9 @@ namespace RSG
                 }
                 catch (Exception ex)
                 {
+					if (Promise.DoNotHandleExceptions && !(ex is RejectableException)) {
+						throw;
+					}
                     wait.pendingPromise.Reject(ex);
                     waiting.RemoveAt(i);
                     continue;

@@ -231,6 +231,9 @@ namespace RSG
 			}
 			catch (Exception ex)
 			{
+				if (Promise.DoNotHandleExceptions && !(ex is RejectableException)) {
+					throw;
+				}
 				Reject(ex);
 			}
 		}
@@ -281,6 +284,9 @@ namespace RSG
 			}
 			catch (Exception ex)
 			{
+				if (Promise.DoNotHandleExceptions && !(ex is RejectableException)) {
+					throw;
+				}
 				rejectable.Reject(ex);
 			}
 		}

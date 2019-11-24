@@ -75,9 +75,10 @@ public class HeroWithShotgun : Hero
 				return Promise.Resolved();
 			}
             shotgunSound.Play();
-            return PlayBulletFlyAnimation(Position, next).Then(() => {
-                onHit.Run();
-            });
+			return PlayBulletFlyAnimation(Position, next).Then(() => {
+				onHit.Run();
+				return onHit.LongRun();
+			});
         }).Then(() => {
             cell = Position.ToDirection(direction);
             if (cell != null) { 
@@ -89,6 +90,6 @@ public class HeroWithShotgun : Hero
                 moveSound.Play();
                 GameManager.instance.HeroMoved(this, oldPosition, Position, direction);
             }
-        }).Return(true);
+		}).Return(true);
     }
 }

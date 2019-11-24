@@ -202,6 +202,11 @@ namespace RSG
 		public static bool EnablePromiseTracking = false;
 
 		/// <summary>
+		/// Set to true to enable tracking of promises.
+		/// </summary>
+		public static bool DoNotHandleExceptions = false;
+
+		/// <summary>
 		/// Event raised for unhandled errors.
 		/// For this to work you have to complete your promises with a call to Done().
 		/// </summary>
@@ -310,6 +315,9 @@ namespace RSG
 			}
 			catch (Exception ex)
 			{
+				if (Promise.DoNotHandleExceptions && !(ex is RejectableException)) {
+					throw;
+				}
 				Reject(ex);
 			}
 		}
@@ -362,6 +370,9 @@ namespace RSG
 			}
 			catch (Exception ex)
 			{
+				if (Promise.DoNotHandleExceptions && !(ex is RejectableException)) {
+					throw;
+				}
 				rejectable.Reject(ex);
 			}
 		}
@@ -380,6 +391,9 @@ namespace RSG
 			}
 			catch (Exception ex)
 			{
+				if (Promise.DoNotHandleExceptions && !(ex is RejectableException)) {
+					throw;
+				}
 				rejectable.Reject(ex);
 			}
 		}

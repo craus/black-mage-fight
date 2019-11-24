@@ -260,6 +260,11 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  longEffect:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: ActionPromiseUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   period: 1
   phase: 0
   runPhases: 00000000
@@ -283,10 +288,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   run:
     m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  runOnCells:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114863898633693740}
-        m_MethodName: Explode
-        m_Mode: 1
+        m_MethodName: ExplodeOnCells
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -295,7 +305,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+    m_TypeName: BoolActionCellActionIPromiseUnityEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114195048236907990
 MonoBehaviour:
@@ -310,10 +320,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effect:
     m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  longEffect:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114863898633693740}
-        m_MethodName: Explode
-        m_Mode: 1
+        m_MethodName: LongExplode
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -322,8 +337,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: ActionPromiseUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   figure: {fileID: 0}
 --- !u!114 &114393768835668324
 MonoBehaviour:
@@ -337,6 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sample: {fileID: 1618957885681114}
+  id: 0
   spawnedObjects: []
 --- !u!114 &114558440732333956
 MonoBehaviour:
@@ -395,6 +411,11 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  longEffect:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: ActionPromiseUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114771274299444742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -418,6 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e01f206b2ecc427dbbbf334ba60a184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colorChanger: {fileID: 0}
   explosionSample: {fileID: 1487431712697618}
   explosionSound: {fileID: 0}
   squareRadius: 2
