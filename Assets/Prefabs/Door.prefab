@@ -57,7 +57,6 @@ GameObject:
   - component: {fileID: 114752586901678172}
   - component: {fileID: 114198540182740558}
   - component: {fileID: 114274925512352524}
-  - component: {fileID: 114281938245767618}
   - component: {fileID: 114141966418606886}
   - component: {fileID: 114819534644026376}
   - component: {fileID: 114950462636925846}
@@ -401,6 +400,11 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  longEffect:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: ActionPromiseUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114198540182740558
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -450,20 +454,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1561575170292892}
---- !u!114 &114281938245767618
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1561575170292892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d6a95d1c5dfb504882ad72bf35f24f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  damage: 1
-  damageProvider: {fileID: 0}
 --- !u!114 &114415449825463634
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -541,6 +531,11 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  longEffect:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: ActionPromiseUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   figure: {fileID: 114198540182740558}
 --- !u!114 &114822700917189896
 MonoBehaviour:
