@@ -9,4 +9,12 @@ public class Level : MonoBehaviour {
     public void Run() {
         GameManager.instance.RunLevel(this);
     }
+
+	public string LevelName() {
+		var levelNameScript = GetComponentInChildren<LevelName>();
+		if (levelNameScript == null) {
+			return gameObject.name;
+		}
+		return levelNameScript.levelName;
+	}
 }

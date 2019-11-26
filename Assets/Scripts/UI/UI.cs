@@ -8,7 +8,8 @@ using RSG;
 public class UI : Singletone<UI> {
     public MenuPanel menu;
     public GameObject customLevel;
-    public DifficultySelectionPanel difficultySelector;
+	public DifficultySelectionPanel difficultySelector;
+    public StatisticsPanel statistics;
     public ProfileSelectionPanel profileSelector;
     public Warning warning;
     public Warning soloWarning;

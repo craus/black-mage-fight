@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections;
 
 [Serializable]
 public class Profile
@@ -19,6 +20,14 @@ public class Profile
 	/// </summary>
     public List<GameRun> currentRuns = new List<GameRun>();
 
+	public IEnumerable<GameRun> VictoryRuns() {
+		return completedRuns.Where(r => r.levelsCompleted >= GameLevels.instance.commonLevels.Count);
+	}
+
+	public IEnumerable<GameRun> AllRuns() {
+		return completedRuns.Concat(currentRuns);
+	}
+
     public string Description() {
         if (name == "") {
             return String.Format("<b><size=24>Пусто</size></b>");
@@ -31,7 +40,7 @@ public class Profile
         if (diff <= 2) {
             return true;
         }
-        return completedRuns.Any(cr => cr.difficulty >= diff - 1);
+		return VictoryRuns().Any(cr => cr.difficulty >= diff - 1);
     }
 
     public bool Visible(Difficulty d) {
@@ -43,6 +52,6 @@ public class Profile
         if (diff == 5) {
             delta = 1;
         }
-        return completedRuns.Any(cr => cr.difficulty >= diff - delta);
+		return VictoryRuns().Any(cr => cr.difficulty >= diff - delta);
     }
 }

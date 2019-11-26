@@ -50,8 +50,16 @@ public class MenuPanel : MonoBehaviour
         });
     }
 
+	public void UpdateText() {
+		profileDescription.text = GameManager.instance.gameState.CurrentProfile.Description();
+	}
+
     public void Show() {
-        profileDescription.text = GameManager.instance.gameState.CurrentProfile.Description();
+		UpdateText();
         gameObject.SetActive(true);
     }
+
+	public void Update() {
+		UpdateText();
+	}
 }

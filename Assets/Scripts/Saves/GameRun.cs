@@ -23,11 +23,45 @@ public class GameRun
 	/// </summary>
 	public List<LevelRun> levelRuns = new List<LevelRun>();
 
+	public string DifficultyName() {
+		return GameLevels.instance.difficulties[difficulty].difficultyName;
+	}
+
+	public string CurrentLevelName() {
+		return GameLevels.instance.commonLevels[levelsCompleted].LevelName();
+	}
+
     public string Description() {
-        string result = string.Format("{0}\nПройдено: {1}", GameLevels.instance.difficulties[difficulty].difficultyName, levelsCompleted);
+		if (Cheats.on) {
+			return string.Format(
+				"{0} – {1} ({2}/{3})", 
+				DifficultyName(),
+				GameLevels.instance.commonLevels[levelsCompleted].LevelName(),
+				levelsCompleted + 1,
+				GameLevels.instance.commonLevels.Count
+			);
+		} else {			
+			return string.Format(
+				"{0}. Уровень {1}. {2}", 
+				DifficultyName(),
+				levelsCompleted + 1,
+				GameLevels.instance.commonLevels[levelsCompleted].LevelName()
+			);
+		}
+
+		string result = string.Format("{0}\nПройдено: {1}", DifficultyName(), levelsCompleted);
         if (continuousRun) {
             result += "\n" + triesLeft;
         }
         return result;
     }
+
+	public IEnumerable<string> Modifiers() {
+		if (panicMode) {
+			yield return "Приступ паники";
+		}
+		if (continuousRun) {
+			yield return "Последовательное прохождение";
+		}
+	}
 }

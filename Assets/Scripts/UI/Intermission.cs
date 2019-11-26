@@ -41,6 +41,9 @@ public class Intermission : MonoBehaviour
     }
 
     public void Update() {
+		if (UI.instance.menu.gameObject.activeSelf) {
+			return;
+		}
         if (Input.anyKeyDown) {
             NextFrame();
         }

@@ -16,6 +16,8 @@ public class GameManager : Singletone<GameManager> {
     public Level lastLevel;
     public Level currentLevel;
 
+
+
     public AudioSource loseSound;
 
 	public AudioSource winSound;
@@ -289,6 +291,7 @@ public class GameManager : Singletone<GameManager> {
 		currentLevelRun.levelID = currentLevel.gameObject.name;
 		currentLevelRun.panicMode = gameState.CurrentRun.panicMode;
 		currentLevelRun.triesLeft = gameState.CurrentRun.triesLeft;
+		UpdateLevelRun();
     }
 
 	public void UpdateLevelRun() {

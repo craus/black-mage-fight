@@ -26,6 +26,7 @@ public class DifficultySelectionPanel : MonoBehaviour
         run.buildMode = buildMode.isOn;
         GameManager.instance.gameState.CurrentProfile.currentRuns.Add(run);
         GameManager.instance.Save();
+		UI.instance.CloseAll();
         GameManager.instance.UpdateState();
     }
 
@@ -37,7 +38,7 @@ public class DifficultySelectionPanel : MonoBehaviour
             colors.normalColor = GameManager.instance.gameState.CurrentProfile.Unlocked(db.difficulty) ? db.basic : db.locked;
             db.GetComponent<UnityEngine.UI.Button>().colors = colors;
             db.completedText.enabled = GameManager.instance.gameState.CurrentProfile.
-				completedRuns.Any(cr => 
+				VictoryRuns().Any(cr => 
 					cr.difficulty == db.difficulty.Value() &&
 					cr.continuousRun == continuousRun.isOn &&
 					cr.panicMode == panicMode.isOn
