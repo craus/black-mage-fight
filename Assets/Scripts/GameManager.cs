@@ -55,7 +55,33 @@ public class GameManager : Singletone<GameManager> {
         this.TryPlay(loseSound);
         UI.instance.Lose();
         Save();
-    }
+	}
+
+	public void DecreaseDifficulty() {
+		if (GameManager.instance.gameState.CurrentRun.difficulty > 0) {
+			GameManager.instance.gameState.CurrentRun.difficulty--;
+			GameManager.instance.UpdateState();
+		}
+	}
+
+	public void IncreaseDifficulty() {
+		if (GameManager.instance.gameState.CurrentRun.difficulty < GameLevels.instance.difficulties.Count-1) {
+			GameManager.instance.gameState.CurrentRun.difficulty++;
+			GameManager.instance.UpdateState();
+		}
+	}
+
+	public void PreviousLevel() {
+		GameManager.instance.gameState.CurrentRun.levelsCompleted--;
+		Debug.LogFormat("Level changed -");
+		GameManager.instance.UpdateState();
+	}
+
+	public void NextLevel() {
+		GameManager.instance.gameState.CurrentRun.levelsCompleted++;
+		Debug.LogFormat("Level changed +");
+		GameManager.instance.UpdateState();
+	}
 
     public bool GameOver() {
         return !LevelIsRunning();
@@ -64,7 +90,8 @@ public class GameManager : Singletone<GameManager> {
     [ContextMenu("Drop Save")]
     public void DropSaveFile() {
         gameState = new GameState();
-        Save();
+		Save();
+		UI.instance.CloseAll();
         UpdateState();
     }
 
@@ -92,7 +119,8 @@ public class GameManager : Singletone<GameManager> {
 		}
 	}
 
-    public void ConfirmWin() {
+	public void ConfirmWin() {
+		UI.instance.CloseAll();
         UpdateState();
     }
 
@@ -135,20 +163,23 @@ public class GameManager : Singletone<GameManager> {
     void FinishGame(GameRun run) {
         ending.Show().Then(() => {
             gameState.CurrentProfile.completedRuns.Add(run);
-            gameState.CurrentProfile.currentRuns.Remove(run);
+			gameState.CurrentProfile.currentRuns.Remove(run);
+			UI.instance.CloseAll();
             UpdateState();
         });
     }
 
     void FailGame() {
         badEnding.Show().Then(() => {
-            gameState.CurrentProfile.currentRuns.Remove(gameState.CurrentRun);
+			gameState.CurrentProfile.currentRuns.Remove(gameState.CurrentRun);
+			UI.instance.CloseAll();
             UpdateState();
         });
     }
 
     void Start() {
-        Load();
+		Load();
+		UI.instance.CloseAll();
         UpdateState();
         if (startLevel != null) {
             startLevel.GetComponent<Level>().Run();
@@ -196,7 +227,6 @@ public class GameManager : Singletone<GameManager> {
         commonObjects.transform.SetParent(currentLevel.transform);
         commonObjects.SetActive(true);
         Controls.instance.activeUnit = Hero.instance;
-        UI.instance.CloseAll();
         TimeManager.Wait(0).Then(() => {
             UI.instance.UpdateHUD();
         });
@@ -245,7 +275,8 @@ public class GameManager : Singletone<GameManager> {
 		BlackMage.instance.recentDamage = 0;
 	}
 
-    public void Restart() {
+	public void Restart() {
+		UI.instance.CloseAll();
         RunLevel(lastLevel, restarted: true);
     }
 

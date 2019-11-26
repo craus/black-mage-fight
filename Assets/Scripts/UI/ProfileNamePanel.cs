@@ -17,7 +17,8 @@ public class ProfileNamePanel : Singletone<ProfileNamePanel>
 
     public void Go() {
         GameManager.instance.gameState.CurrentProfile.name = GetName();
-        GameManager.instance.Save();
+		GameManager.instance.Save();
+		UI.instance.CloseAll();
         GameManager.instance.UpdateState();
     }
 

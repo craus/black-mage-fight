@@ -41,7 +41,8 @@ public class ProfileSelectionPanel : MonoBehaviour
             return;
         }
         GameManager.instance.gameState.currentProfileIndex = id;
-        GameManager.instance.Save();
+		GameManager.instance.Save();
+		UI.instance.CloseAll();
         GameManager.instance.UpdateState();
     }
 }

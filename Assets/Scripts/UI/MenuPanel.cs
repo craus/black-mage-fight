@@ -6,6 +6,12 @@ using UnityEngine.UI;
 public class MenuPanel : MonoBehaviour
 {   
     public Text profileDescription;
+	public GameObject cheatMenu;
+	public GameObject cheatButton;
+
+	public void Awake() {
+		cheatMenu.SetActive(false);
+	}
 
     public void SwitchProfile() {
         GameManager.instance.gameState.currentProfileIndex = -1;
@@ -13,10 +19,21 @@ public class MenuPanel : MonoBehaviour
         GameManager.instance.UpdateState();
     }
 
+	public void StartCheating() {
+		cheatMenu.SetActive(true);
+		cheatButton.SetActive(false);
+	}
+
+	public void StopCheating() {
+		cheatMenu.SetActive(false);
+		cheatButton.SetActive(true);
+	}
+
     public void InterruptRun() {
         UI.instance.Confirm("Прохождение потеряется полностью. Продолжить?").Then(() => {
             GameManager.instance.gameState.CurrentProfile.currentRuns.Clear();
-            GameManager.instance.Save();
+			GameManager.instance.Save();
+			UI.instance.CloseAll();
             GameManager.instance.UpdateState();
         });
     }
