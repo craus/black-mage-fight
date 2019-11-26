@@ -30,7 +30,9 @@ public class MenuPanel : MonoBehaviour
 	}
 
     public void InterruptRun() {
-        UI.instance.Confirm("Прохождение потеряется полностью. Продолжить?").Then(() => {
+		UI.instance.Confirm("Прохождение потеряется полностью. Продолжить?").Then(() => {
+			GameManager.instance.gameState.CurrentRun.interrupted = true;
+			GameManager.instance.gameState.CurrentProfile.completedRuns.Add(GameManager.instance.gameState.CurrentRun);
             GameManager.instance.gameState.CurrentProfile.currentRuns.Clear();
 			GameManager.instance.Save();
 			UI.instance.CloseAll();

@@ -31,6 +31,7 @@ public class GameManager : Singletone<GameManager> {
     public int losses;
 
 	public bool levelIsRunning;
+	public LevelRun currentLevelRun;
 
     public void Win() {
 		BlackMage.instance.health = 0;
@@ -41,6 +42,7 @@ public class GameManager : Singletone<GameManager> {
 		Debug.LogFormat("Win");
         gameState.CurrentRun.levelsCompleted++;
 		levelIsRunning = false;
+		UpdateLevelRun();
         if (gameState.CurrentRun.continuousRun) {
             gameState.CurrentRun.triesLeft++;
         } 
@@ -52,6 +54,7 @@ public class GameManager : Singletone<GameManager> {
 		Hero.instance.gameObject.SetActive(false);
         ++losses;
 		levelIsRunning = false;
+		UpdateLevelRun();
         this.TryPlay(loseSound);
         UI.instance.Lose();
         Save();
@@ -102,7 +105,18 @@ public class GameManager : Singletone<GameManager> {
     public void Load() {
         gameState = FileManager.LoadFromFile<GameState>(GAMESTATE_FILE);
         if (gameState != null) {
-
+			gameState.profiles.ForEach(p => {
+				p.completedRuns.ForEach(r => {
+					if (r.levelRuns == null) {
+						r.levelRuns = new List<LevelRun>();
+					}
+				});
+				p.currentRuns.ForEach(r => {
+					if (r.levelRuns == null) {
+						r.levelRuns = new List<LevelRun>();
+					}
+				});
+			});
         } else {
             gameState = new GameState();
         }
@@ -170,7 +184,8 @@ public class GameManager : Singletone<GameManager> {
     }
 
     void FailGame() {
-        badEnding.Show().Then(() => {
+		badEnding.Show().Then(() => {
+			gameState.CurrentProfile.completedRuns.Add(gameState.CurrentRun);
 			gameState.CurrentProfile.currentRuns.Remove(gameState.CurrentRun);
 			UI.instance.CloseAll();
             UpdateState();
@@ -206,6 +221,9 @@ public class GameManager : Singletone<GameManager> {
     }
 
     public void RunLevel(Level level, bool restarted = false) {
+		if (levelIsRunning && currentLevelRun != null) {
+			UpdateLevelRun();
+		}
 		Controls.instance.Reset();
 		Intermission.active = false;
         if (gameState.CurrentRun.continuousRun) {
@@ -264,7 +282,25 @@ public class GameManager : Singletone<GameManager> {
         }
 
 		levelIsRunning = true;
+		currentLevelRun = new LevelRun();
+		gameState.CurrentRun.levelRuns.Add(currentLevelRun);
+		currentLevelRun.continuousRun = gameState.CurrentRun.continuousRun;
+		currentLevelRun.difficulty = gameState.CurrentRun.difficulty;
+		currentLevelRun.levelID = currentLevel.gameObject.name;
+		currentLevelRun.panicMode = gameState.CurrentRun.panicMode;
+		currentLevelRun.triesLeft = gameState.CurrentRun.triesLeft;
     }
+
+	public void UpdateLevelRun() {
+		currentLevelRun.blackMageHealth = BlackMage.instance.health;
+		currentLevelRun.heroHealth = Hero.instance.health;
+		if (TurnCounter.instance != null) {
+			currentLevelRun.steps = TurnCounter.instance.counter.value;
+		}
+		if (TotalTimeCounter.instance != null) {
+			currentLevelRun.seconds = TotalTimeCounter.instance.counter.value;
+		}
+	}
 
 	public void HeroMoved(Unit hero, Cell from, Cell to, IntVector2 direction) {
         onHeroMove(hero, from, to, direction);
@@ -286,6 +322,7 @@ public class GameManager : Singletone<GameManager> {
 
     public override void OnDestroy() {
 		base.OnDestroy();
+		UpdateLevelRun();
         Save();
     }
 

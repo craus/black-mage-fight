@@ -9,7 +9,14 @@ public class Profile
     public string name = "";
 	public bool skipIntros = false;
 
+	/// <summary>
+	/// All game runs which are not current
+	/// </summary>
     public List<GameRun> completedRuns = new List<GameRun>();
+
+	/// <summary>
+	/// List of current game runs. For now, contains 0 or 1 element.
+	/// </summary>
     public List<GameRun> currentRuns = new List<GameRun>();
 
     public string Description() {
