@@ -162,27 +162,17 @@ public class Controls : MonoBehaviour {
 				GameManager.instance.Restart();
 			}
             if (Input.GetKeyDown(KeyCode.LeftBracket)) {
-                GameManager.instance.gameState.CurrentRun.levelsCompleted--;
-				Debug.LogFormat("Level changed -");
-                GameManager.instance.UpdateState();
+				GameManager.instance.PreviousLevel();
             }
             if (Input.GetKeyDown(KeyCode.RightBracket)) {
-                GameManager.instance.gameState.CurrentRun.levelsCompleted++;
-				Debug.LogFormat("Level changed +");
-                GameManager.instance.UpdateState();
+				GameManager.instance.NextLevel();
             }
 
 			if (Input.GetKeyDown(KeyCode.Minus)) {
-				if (GameManager.instance.gameState.CurrentRun.difficulty > 0) {
-					GameManager.instance.gameState.CurrentRun.difficulty--;
-					GameManager.instance.UpdateState();
-				}
+				GameManager.instance.DecreaseDifficulty();
             }
 			if (Input.GetKeyDown(KeyCode.Equals)) {
-				if (GameManager.instance.gameState.CurrentRun.difficulty < GameLevels.instance.difficulties.Count-1) {
-					GameManager.instance.gameState.CurrentRun.difficulty++;
-					GameManager.instance.UpdateState();
-				}
+				GameManager.instance.IncreaseDifficulty();
             }
 
 			if (Input.GetKeyDown(KeyCode.S)) {
