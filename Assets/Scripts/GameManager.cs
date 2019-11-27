@@ -316,6 +316,8 @@ public class GameManager : Singletone<GameManager> {
 
 	public void Restart() {
 		UI.instance.CloseAll();
+
+		gameState.CurrentRun.levelsCompleted = GameLevels.instance.commonLevels.IndexOf(lastLevel);
         RunLevel(lastLevel, restarted: true);
     }
 

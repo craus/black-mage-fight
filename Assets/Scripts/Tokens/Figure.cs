@@ -41,7 +41,11 @@ public class Figure : Token
 		return GetComponents<Marker>().Any(m => m.mark == mark);
 	}
 
-	public bool Marked(List<Mark> marks) {
+	public bool Marked(IEnumerable<Mark> marks) {
+		return marks.Any(Marked);
+	}
+
+	public bool Marked(params Mark[] marks) {
 		return marks.Any(Marked);
 	}
 

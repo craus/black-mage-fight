@@ -77,6 +77,10 @@ public class Cell : MonoBehaviour {
 		return Board.instance.GetCell(x + direction.x * distance, y + direction.y * distance);
     }
 
+	public Cell ToDirection(int dx, int dy, int distance = 1) {
+		return Board.instance.GetCell(x + dx * distance, y + dy * distance);
+	}
+
     public Cell Right() {
         return Board.instance.GetCell(x, y + 1);
     }

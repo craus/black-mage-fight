@@ -25,6 +25,9 @@ public class CellsColorChanger : MonoBehaviour
 	}
 
 	public void Unpaint(Cell c) {
+		if (!colorChangers.ContainsKey(c)) {
+			return;
+		}
 		colorChangers[c].Active = false;
 	}
 }
