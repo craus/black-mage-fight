@@ -137,6 +137,7 @@ public class UI : Singletone<UI> {
         warning.Hide();
         soloWarning.Hide();
         volumes.gameObject.SetActive(false);
+		statistics.Hide();
     }
 
     public void Volumes() {

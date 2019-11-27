@@ -20,10 +20,6 @@ public class StatisticsPanel : MonoBehaviour
 
 	public Text title;
 
-	public void Awake() {
-		Hide();
-	}
-
 	public void Show() {
 		gameObject.SetActive(true);
 		UpdateTexts();
