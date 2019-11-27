@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4727534328323076}
   - component: {fileID: 82044695662887650}
-  - component: {fileID: 114154577359829394}
   m_Layer: 0
   m_Name: Key Pick Sound
   m_TagString: Untagged
@@ -280,18 +279,11 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114154577359829394
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1785654258302990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 268d8efa6cc91473a9b498396c1f68e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
+  longEffect:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: ActionPromiseUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114501606100105568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -339,7 +331,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114154577359829394}
+      - m_Target: {fileID: 82044695662887650}
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -352,6 +344,11 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  longEffect:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: ActionPromiseUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   figure: {fileID: 114073209765735048}
 --- !u!114 &114506480301986394
 MonoBehaviour:

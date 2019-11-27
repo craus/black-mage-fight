@@ -48,12 +48,6 @@ public class GameRun
 				GameLevels.instance.commonLevels[levelsCompleted].LevelName()
 			);
 		}
-
-		string result = string.Format("{0}\nПройдено: {1}", DifficultyName(), levelsCompleted);
-        if (continuousRun) {
-            result += "\n" + triesLeft;
-        }
-        return result;
     }
 
 	public IEnumerable<string> Modifiers() {

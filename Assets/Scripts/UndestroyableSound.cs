@@ -9,6 +9,8 @@ public class UndestroyableSound : MonoBehaviour
 {
 	public AudioSource audioSource;
 
+	public float delay = 10;
+
 	public void Awake() {
 		audioSource = GetComponent<AudioSource>();
 	}
@@ -16,5 +18,6 @@ public class UndestroyableSound : MonoBehaviour
 	public void Play() {
 		transform.SetParent(SoundManager.instance.undestroyableSounds);
 		audioSource.Play();
+		TimeManager.Wait(delay).Then(() => Destroy(gameObject)).Done();
 	}
 }
