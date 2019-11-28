@@ -28,6 +28,19 @@ public class GoToClosest : MonoBehaviour
 	public Cell target;
 	public Cell distantTarget;
 
+	public float skullsCount = 0;
+	public float totalSkullsDamage = 0;
+
+	/// <summary>
+	/// how much hp you win by removing random 0-damage skull
+	/// </summary>
+	public const float zeroSkullKillCost = 0.2f;
+
+	/// <summary>
+	/// how much hp you win by reducing random skull damage by 1
+	/// </summary>
+	public const float skullDamageCost = 0.5f; 
+
 	public Map<Cell, Map<Cell, Algorithm.Weighted<Cell>>> shortestPaths = new Map<Cell, Map<Cell, Algorithm.Weighted<Cell>>>();
 
 	double[] ClearMatrix() {
@@ -42,27 +55,42 @@ public class GoToClosest : MonoBehaviour
 		a ^= b;
 	}
 
-	public bool IsBonus(Figure f) {
-		if (f is BlackMage) {
-			return true;
-		}
-		if (f is Heart) {
-			return true;
-		}
-		if (f is Antidote) {
-			return true;
-		}
-		if (f.GetComponent<Statue>() != null) {
-			return true;
-		}
-		if (f.Marked(Marks.Bomb, Marks.BlackMageRelocator)) {
-			return true;
-		}
-		return false;
+	public float Area() {
+		return 64;
 	}
 
-	public IEnumerable<Figure> Bonuses() {
-		return Board.instance.cellsList.SelectMany(c => c.Figures.Where(IsBonus));
+	public float RelocateCost() {
+		return (zeroSkullKillCost * skullsCount + skullDamageCost * totalSkullsDamage) / Area();
+	}
+
+	public float RelocatorCount() {
+		return 2;
+	}
+
+	public float BonusCost(Figure f) {
+		if (f is BlackMage) {
+			return 1f * Hero.instance.health / BlackMage.instance.health + RelocatorCount() * RelocateCost();
+		}
+		if (f is Heart) {
+			return (f as Heart).heal;
+		}
+		if (f is Antidote) {
+			return 1f * Hero.instance.health / BlackMage.instance.health; // same as BM
+		}
+		if (f.GetComponent<Statue>() != null) {
+			return 1f * Hero.instance.health / BlackMage.instance.health; // same as BM
+		}
+		if (f.Marked(Marks.Bomb)) {
+			return 1f * Hero.instance.health / BlackMage.instance.health; // half of BM
+		}
+		if (f.Marked(Marks.BlackMageRelocator)) {
+			return RelocatorCount() * RelocateCost(); // half of BM
+		}
+		return 0;
+	}
+
+	public IEnumerable<Algorithm.Weighted<Figure>> Bonuses() {
+		return Board.instance.cellsList.SelectMany(c => c.Figures.Select(f => new Algorithm.Weighted<Figure>(f, BonusCost(f))));
 	}
 
 	public Algorithm.Weighted<Cell> Edge(Cell to) {
@@ -70,6 +98,7 @@ public class GoToClosest : MonoBehaviour
 		var skull = to.Figures.FirstOrDefault(f => f is Skull) as Skull;
 		if (skull != null) {
 			weight += skull.damage;
+			weight -= zeroSkullKillCost;
 		}
 		return new Algorithm.Weighted<Cell>(to, weight);
 	}
@@ -97,7 +126,6 @@ public class GoToClosest : MonoBehaviour
 	}
 
 	public float Distance(Figure a, Figure b) {
-
 		return ShortestPaths(a.Position)[b.Position].weight;
 	}
 
@@ -112,8 +140,15 @@ public class GoToClosest : MonoBehaviour
 		return target;
 	}
 
+	public void UpdateTotalSkullsDamage() {
+		var skulls = Board.instance.cellsList.SelectMany(c => c.Figures.Where(f => f is Skull));
+		totalSkullsDamage = skulls.Sum(f => (f as Skull).damage);
+		skullsCount = skulls.Count();
+	}
+
 	public void Move() {
 		shortestPaths.Clear();
+		UpdateTotalSkullsDamage();
 		if (Hero.instance.health < 1 || BlackMage.instance.health < 1) {
 			Controls.instance.Restart();
 			return;
@@ -121,7 +156,7 @@ public class GoToClosest : MonoBehaviour
 		if (dynamicBlackMageCost) {
 			blackMageCost = 1.0 * Hero.instance.health / BlackMage.instance.health;
 		}
-		distantTarget = Bonuses().MinBy(f => Distance(Hero.instance, f)).Position;
+		distantTarget = Bonuses().MaxBy(f => f.weight / Mathf.Clamp(Distance(Hero.instance, f.to), 1e-9f, 1e9f)).to.Position;
 		target = StepTo(distantTarget);
 		if (target.x > Hero.instance.Position.x) {
 			Controls.instance.down.Press();
