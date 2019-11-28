@@ -15,6 +15,18 @@ public class Explosive : MonoBehaviour
     public GameObject explosionSample;
     public AudioSource explosionSound;
 	public int squareRadius = 2;
+
+	public IntValueProvider squareRadiusProvider;
+
+	public int SquareRadius {
+		get {
+			if (squareRadiusProvider != null) {
+				return squareRadiusProvider.Value;
+			}
+			return squareRadius;
+		}
+	}
+
 	public float explosionSpriteRadius = 0.67f;
 
     public void Awake() {
@@ -23,11 +35,14 @@ public class Explosive : MonoBehaviour
 
 	IPromise PlayExplosionAnimation(Cell from) {
 		var explosion = Instantiate(explosionSample);
-		explosion.transform.localScale = Vector3.one * Mathf.Sqrt(squareRadius) * explosionSpriteRadius;
+		explosion.transform.localScale = Vector3.one * Mathf.Sqrt(SquareRadius) * explosionSpriteRadius;
 		explosion.SetActive(true);
 		explosion.transform.position = from.transform.position;
+
+		var area = ExplosionArea();
+
 		if (colorChanger != null) {
-			ExplosionArea().ForEach(cell => {
+			area.ForEach(cell => {
 				colorChanger.Paint(cell);
 			});
 		}
@@ -35,7 +50,7 @@ public class Explosive : MonoBehaviour
 		return TimeManager.Wait(0.1f).Then(() => {
 			Destroy(explosion);
 			if (colorChanger != null) {
-				ExplosionArea().ForEach(cell => {
+				area.ForEach(cell => {
 					colorChanger.Unpaint(cell);
 				});
 			}
@@ -63,7 +78,7 @@ public class Explosive : MonoBehaviour
 
 	public List<Cell> ExplosionArea() {
 		return Board.instance.cellsList.Where(
-			c => c.SquareEuclideanDistance(figure.Position) <= squareRadius
+			c => c.SquareEuclideanDistance(figure.Position) <= SquareRadius
 		).ToList();
 	}
 

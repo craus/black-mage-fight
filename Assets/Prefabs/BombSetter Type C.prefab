@@ -474,6 +474,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1699529387334388
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4221356270494770}
+  - component: {fileID: 114763670378231222}
+  m_Layer: 0
+  m_Name: TimesProvider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1713250274159520
 GameObject:
   m_ObjectHideFlags: 1
@@ -557,6 +573,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1922528191477644
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4301895731074326}
+  - component: {fileID: 114065328067073608}
+  m_Layer: 0
+  m_Name: SquareRadiusProvider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1951536330272320
 GameObject:
   m_ObjectHideFlags: 1
@@ -708,6 +740,19 @@ Transform:
   m_Father: {fileID: 4916164577962416}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4221356270494770
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1699529387334388}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4916164577962416}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4244451662101026
 Transform:
   m_ObjectHideFlags: 1
@@ -721,6 +766,19 @@ Transform:
   - {fileID: 224036374328737392}
   m_Father: {fileID: 4981404759054196}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4301895731074326
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1922528191477644}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4981404759054196}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4385411329473956
 Transform:
@@ -953,6 +1011,7 @@ Transform:
   - {fileID: 4151047632162750}
   - {fileID: 4208929224577566}
   - {fileID: 4159747072948232}
+  - {fileID: 4221356270494770}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1011,6 +1070,7 @@ Transform:
   - {fileID: 4927935435325462}
   - {fileID: 4244451662101026}
   - {fileID: 4050187089455580}
+  - {fileID: 4301895731074326}
   m_Father: {fileID: 4401209071000618}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1213,6 +1273,19 @@ MonoBehaviour:
   value: {r: 1, g: 0, b: 0, a: 1}
   priority: 0.9
   active: 0
+--- !u!114 &114065328067073608
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1922528191477644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f55a18eea4ffc468f9996bf5ef9c80f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 0
+  values: 020000000200000002000000020000000200000002000000
 --- !u!114 &114098030207754344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1252,6 +1325,11 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  longEffect:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: ActionPromiseUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   period: 1
   phase: 0
   runPhases: 00000000
@@ -1305,8 +1383,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: BoolActionCellUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
+    m_TypeName: BoolActionCellActionIPromiseUnityEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114218089704565532
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1336,6 +1414,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  longEffect:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: ActionPromiseUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114249449658733758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1640,6 +1723,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  longEffect:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: ActionPromiseUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114480437364760336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1705,6 +1793,11 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  longEffect:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: ActionPromiseUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114520113606459534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1754,6 +1847,11 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  longEffect:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: ActionPromiseUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   figure: {fileID: 114715548925218974}
 --- !u!114 &114524418304059716
 MonoBehaviour:
@@ -1767,7 +1865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   times: 1
-  timesProvider: {fileID: 0}
+  timesProvider: {fileID: 114763670378231222}
   effect:
     m_PersistentCalls:
       m_Calls:
@@ -1826,6 +1924,11 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  longEffect:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: ActionPromiseUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   trigger: {fileID: 114239642161245908}
 --- !u!114 &114547426762612012
 MonoBehaviour:
@@ -1866,6 +1969,11 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  longEffect:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: ActionPromiseUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   trigger: {fileID: 114460785419759678}
 --- !u!114 &114619480750415524
 MonoBehaviour:
@@ -2041,6 +2149,19 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   swapSound: {fileID: 0}
   blink: {fileID: 0}
+--- !u!114 &114763670378231222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1699529387334388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f55a18eea4ffc468f9996bf5ef9c80f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 0
+  values: 010000000100000001000000010000000100000001000000
 --- !u!114 &114765618660790074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2184,6 +2305,7 @@ MonoBehaviour:
   explosionSample: {fileID: 1431014186007062}
   explosionSound: {fileID: 82157996902489116}
   squareRadius: 2
+  squareRadiusProvider: {fileID: 0}
   explosionSpriteRadius: 0.67
 --- !u!114 &114896330999892142
 MonoBehaviour:
