@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 
-public class Bot : MonoBehaviour
+public class HeartStopperOptimalDynamicBot : MonoBehaviour
 {
     double[] a = null;
     int step = 0;

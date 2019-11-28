@@ -4,7 +4,7 @@ using System.Linq;
 
 public class BotLocator : MonoBehaviour
 {
-    public Bot bot;
+    public HeartStopperOptimalDynamicBot bot;
 
     public void Locate(Figure figure) {
         
