@@ -63,6 +63,7 @@ public class Figure : Token
 
 	public virtual void Awake() {
 		blink = GetComponent<Blink>();
+		//Tracker
 	}
 
     bool Swap(IntVector2 direction) {
