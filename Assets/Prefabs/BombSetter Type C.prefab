@@ -2247,7 +2247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5be25148e48234d92220caa3e21687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: {r: 1, g: 1, b: 0, a: 1}
+  value: {r: 0.922, g: 0.80050254, b: 0.066384025, a: 1}
   priority: 0.5
   active: 0
 --- !u!114 &114828598982336546

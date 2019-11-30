@@ -240,7 +240,8 @@ public class GameManager : Singletone<GameManager> {
         }
         lastLevel = level;
         Clear();
-        currentLevel = Instantiate(level);
+		currentLevel = Instantiate(level);
+		ExistByCondition.AwakeAll(currentLevel);
 		currentLevel.name = level.name;
         currentLevel.gameObject.SetActive(true);
         var commonObjects = Instantiate(GameLevels.instance.commonObjects);
@@ -260,7 +261,6 @@ public class GameManager : Singletone<GameManager> {
             }
         });
 
-		ExistByCondition.AwakeAll();
         FindObjectsOfType<OnLevelStart>().ForEach(t => t.Run()); // then run existent onlevelstart triggers
 
 		if (BlackMage.instance.GetComponent<HealthScale>() == null) {
