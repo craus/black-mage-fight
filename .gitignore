@@ -6,3 +6,6 @@ Builds/
 *.sln
 Build
 *.userprefs
+Releases/
+.vs/
+Logs/
