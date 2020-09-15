@@ -24,7 +24,12 @@ public class Skull : Figure
 		UpdateUI();
     }
 
-    void UpdateUI() {
+    public void Spend(int value) {
+        damage -= value;
+        UpdateUI();
+    }
+
+    public void UpdateUI() {
 		text.text = damage.ToString();
 		var scale = 0.3f + 0.1f * Mathf.Clamp(step, 0, 8);
 		transform.localScale = new Vector3(scale, scale, 1);

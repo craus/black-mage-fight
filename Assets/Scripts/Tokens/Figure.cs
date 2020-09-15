@@ -119,6 +119,14 @@ public class Figure : Token
         if (cell == null) {
             return Promise.v(false);
         }
+        if (this is Hero) {
+            var skull = cell.figures.FirstOrDefault(f => f is Skull) as Skull;
+            if (skull != null && skull.damage > 3) {
+                (this as Hero).Hit(3);
+                skull.Spend(3);
+                return Promise.v(false);
+            }
+        }
 		cell.figures.ForEach(f => f.onPushed.Invoke(direction));
         cell.MoveHere(this);
         return Promise.v(true);
