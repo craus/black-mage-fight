@@ -4,6 +4,7 @@ using RSG;
 using System;
 using System.Collections.Generic;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Controls : MonoBehaviour {
     public static Controls instance;
@@ -32,6 +33,14 @@ public class Controls : MonoBehaviour {
 
 	public UnityEvent ready;
 
+	public List<ArrowButton> buttons;
+	public bool timedMoves;
+	public float moveTime = 1f;
+	public float autoMoveTime;
+	public float maxMovesAccumulated = 3;
+
+	public Slider moveTimerSlider;
+
 	public void Lock(MonoBehaviour locker) {
 		lockers.Add(locker);
 	}
@@ -50,6 +59,7 @@ public class Controls : MonoBehaviour {
 	public void Reset() {
 		lockers.Clear();
 		commands = Promise.Resolved();
+		autoMoveTime = float.PositiveInfinity;
 	}
 
     void Awake() {
@@ -113,6 +123,7 @@ public class Controls : MonoBehaviour {
 			Debug.LogFormat("Locked");
 			return;
 		}
+		autoMoveTime = Mathf.Clamp(autoMoveTime + moveTime, float.NegativeInfinity, TimeManager.Time() + maxMovesAccumulated * moveTime);
         Command(() => activeUnit.MoveTo(direction).Untyped());
     }
 
@@ -124,6 +135,8 @@ public class Controls : MonoBehaviour {
 		#if UNITY_EDITOR
 		Cheats.on = true;
 		#endif 
+
+		
 	}
 
 	public void MouseStep() {
@@ -173,6 +186,29 @@ public class Controls : MonoBehaviour {
 				GameManager.instance.NextLevel();
             }
 
+			if (Input.GetKeyDown(KeyCode.T)) {
+				timedMoves ^= true;
+				autoMoveTime = float.PositiveInfinity;
+				Debug.LogFormat($"timedMoves = {timedMoves}");
+			}
+			if (Input.GetKeyDown(KeyCode.Alpha1)) {
+				moveTime *= 1.1f;
+				Debug.LogFormat($"moveTime = {moveTime}");
+			}
+			if (Input.GetKeyDown(KeyCode.Alpha2)) {
+				moveTime /= 1.1f;
+				Debug.LogFormat($"moveTime = {moveTime}");
+			}
+			if (timedMoves) {
+				if (TimeManager.Time() > autoMoveTime) {
+					buttons.rnd().Press();
+				}
+				moveTimerSlider.gameObject.SetActive(true);
+				moveTimerSlider.value = maxMovesAccumulated - (autoMoveTime - TimeManager.Time()) / moveTime;
+			} else {
+				moveTimerSlider.gameObject.SetActive(false);
+			}
+
 			if (Input.GetKeyDown(KeyCode.Minus)) {
 				GameManager.instance.DecreaseDifficulty();
             }
@@ -184,6 +220,8 @@ public class Controls : MonoBehaviour {
 				GameManager.instance.gameState.CurrentProfile.skipIntros ^= true;
 			}
         }
+
+
         if (Input.GetKeyDown(KeyCode.Escape)) {
             UI.instance.Escape();
         }

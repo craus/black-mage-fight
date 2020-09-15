@@ -65,24 +65,34 @@ public class GameManager : Singletone<GameManager> {
 	public void DecreaseDifficulty() {
 		if (GameManager.instance.gameState.CurrentRun.difficulty > 0) {
 			GameManager.instance.gameState.CurrentRun.difficulty--;
-			GameManager.instance.UpdateState();
+            restarted = true;
+            GameManager.instance.UpdateState();
 		}
 	}
 
 	public void IncreaseDifficulty() {
 		if (GameManager.instance.gameState.CurrentRun.difficulty < GameLevels.instance.difficulties.Count-1) {
 			GameManager.instance.gameState.CurrentRun.difficulty++;
-			GameManager.instance.UpdateState();
+            restarted = true;
+            GameManager.instance.UpdateState();
 		}
 	}
 
 	public void PreviousLevel() {
-		GameManager.instance.gameState.CurrentRun.levelsCompleted--;
+        if (GameManager.instance.gameState.CurrentRun.levelsCompleted <= 0) {
+            return;
+        }
+        restarted = true;
+        GameManager.instance.gameState.CurrentRun.levelsCompleted--;
 		Debug.LogFormat("Level changed -");
 		GameManager.instance.UpdateState();
 	}
 
 	public void NextLevel() {
+        if (GameManager.instance.gameState.CurrentRun.levelsCompleted > GameLevels.instance.commonLevels.Count - 1) {
+            return;
+        }
+        restarted = true;
 		GameManager.instance.gameState.CurrentRun.levelsCompleted++;
 		Debug.LogFormat("Level changed +");
 		GameManager.instance.UpdateState();
@@ -222,7 +232,8 @@ public class GameManager : Singletone<GameManager> {
         FindObjectsOfType<Figure>().ForEach(f => f.Blink());
     }
 
-    public void RunLevel(Level level, bool restarted = false) {
+    public bool restarted = false;
+    public void RunLevel(Level level) {
 		if (levelIsRunning && currentLevelRun != null) {
 			UpdateLevelRun();
 		}
@@ -318,7 +329,8 @@ public class GameManager : Singletone<GameManager> {
 		UI.instance.CloseAll();
 
 		gameState.CurrentRun.levelsCompleted = GameLevels.instance.commonLevels.IndexOf(lastLevel);
-        RunLevel(lastLevel, restarted: true);
+        restarted = true;
+        RunLevel(lastLevel);
     }
 
     public void Save() {
