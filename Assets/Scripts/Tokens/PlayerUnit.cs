@@ -14,6 +14,7 @@ public class PlayerUnit : Unit
     }
 
     public override IPromise<bool> MoveTo(IntVector2 direction) {
+		Debug.LogFormat("PlayerUnit.MoveTo {0} from {1}", direction, Position);  
         var oldPosition = Position;
 
 		GameManager.instance.BeforeHeroMove();
@@ -21,6 +22,7 @@ public class PlayerUnit : Unit
         return base.MoveTo(direction).Then(moved => {
             if (moved) {
                 moveSound.Play();
+				Debug.LogFormat("moveSound.Play()");  
                 CheckCollisions(oldPosition);
                 GameManager.instance.HeroMoved(this, oldPosition, Position, direction);
                 return;
