@@ -36,7 +36,7 @@ public class Letter : MonoBehaviour
 				.Wait(0)
 				.Then(() => activeImage.SetActive(true))
 				.Then(() => TimeManager.Wait(0.1f))
-				.Then(() => activeImage.SetActive(false))
+				.Then(() => activeImage?.SetActive(false))
 				.Then(() => afterSuccess.Invoke())
 				.Then(() => {
 					success.Resolve();

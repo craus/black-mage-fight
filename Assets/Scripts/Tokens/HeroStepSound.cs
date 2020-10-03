@@ -21,6 +21,9 @@ public class HeroStepSound : MonoBehaviour
 	}
 
 	public void Update() {
-		sound.pitch = Pitch();
+		var newPitch = Pitch();
+		if (sound.pitch != newPitch) {
+			sound.pitch = newPitch;
+		}
 	}
 }

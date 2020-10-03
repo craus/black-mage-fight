@@ -127,7 +127,8 @@ public class Figure : Token
                 return Promise.v(false);
             }
         }
-		cell.figures.ForEach(f => f.onPushed.Invoke(direction));
+		var figuresToPush = cell.figures.ToList();
+		figuresToPush.ForEach(f => f.onPushed.Invoke(direction));
         cell.MoveHere(this);
         return Promise.v(true);
     }
