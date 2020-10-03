@@ -37,7 +37,8 @@ public class Controls : MonoBehaviour {
 	public bool timedMoves;
 	public float moveTime = 1f;
 	public float autoMoveTime;
-	public float maxMovesAccumulated = 3;
+	public float maxMovesAccumulated = 10;
+	public bool autoSetTimerForDifficulty = false;
 
 	public Slider moveTimerSlider;
 
@@ -187,9 +188,14 @@ public class Controls : MonoBehaviour {
             }
 
 			if (Input.GetKeyDown(KeyCode.T)) {
-				timedMoves ^= true;
-				autoMoveTime = float.PositiveInfinity;
-				Debug.LogFormat($"timedMoves = {timedMoves}");
+				if (Input.GetKey(KeyCode.LeftShift)) {
+					autoSetTimerForDifficulty ^= true;
+					Debug.LogFormat($"autoSetTimerForDifficulty = {timedMoves}");
+				} else {
+					timedMoves ^= true;
+					autoMoveTime = float.PositiveInfinity;
+					Debug.LogFormat($"timedMoves = {timedMoves}");
+				}
 			}
 			if (Input.GetKeyDown(KeyCode.Alpha1)) {
 				moveTime *= 1.1f;
@@ -199,12 +205,40 @@ public class Controls : MonoBehaviour {
 				moveTime /= 1.1f;
 				Debug.LogFormat($"moveTime = {moveTime}");
 			}
+
+			if (autoSetTimerForDifficulty) {
+				var d = GameManager.instance.gameState.CurrentRun.difficulty;
+				if (d == 0) {
+					timedMoves = true;
+					moveTime = 0.17f;
+				}
+				if (d == 1) {
+					timedMoves = true;
+					moveTime = 0.3f;
+				}
+				if (d == 2) {
+					timedMoves = true;
+					moveTime = 0.5f;
+				}
+				if (d == 3) {
+					timedMoves = true;
+					moveTime = 0.7f;
+				}
+				if (d == 4) {
+					timedMoves = false;
+				}
+				if (d == 5) {
+					timedMoves = false;
+				}
+			}
+
 			if (timedMoves) {
 				if (TimeManager.Time() > autoMoveTime) {
 					buttons.rnd().Press();
 				}
 				moveTimerSlider.gameObject.SetActive(true);
 				moveTimerSlider.value = maxMovesAccumulated - (autoMoveTime - TimeManager.Time()) / moveTime;
+				moveTimerSlider.maxValue = maxMovesAccumulated;
 			} else {
 				moveTimerSlider.gameObject.SetActive(false);
 			}
