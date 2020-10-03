@@ -72,7 +72,7 @@ public class GoToClosest : MonoBehaviour
 			return 1f * Hero.instance.health / BlackMage.instance.health + RelocatorCount() * RelocateCost();
 		}
 		if (f is Heart) {
-			return (f as Heart).heal;
+			return (f as Heart).Heal;
 		}
 		if (f is Antidote) {
 			return 1f * Hero.instance.health / BlackMage.instance.health; // same as BM

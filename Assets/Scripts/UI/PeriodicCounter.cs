@@ -8,6 +8,9 @@ public class PeriodicCounter : MonoBehaviour
 	public MultipleTimes multiple;
 
 	public void Awake() {
+		if (periodic == null) {
+			periodic = GetComponent<Periodic>();
+		}
 		multiple = GetComponent<MultipleTimes>();
 	}
 

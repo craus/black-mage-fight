@@ -2,13 +2,12 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class HeartStopperPeriodic : MonoBehaviour
+public class HeartStopperPeriodic : OptionalSingletone<HeartStopperPeriodic>
 {
-    public static HeartStopperPeriodic instance;
 	public PeriodicCounter periodicCounter;
 
-    public void Awake() {
-        instance = this;
+    public override void Awake() {
+        base.Awake();
         periodicCounter = GetComponent<PeriodicCounter>();
     }
 }

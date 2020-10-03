@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class HeartStopper : Token
+public class HeartStopper : OptionalSingletone<HeartStopper>
 {
     public int damage = 1;
 
@@ -17,7 +17,8 @@ public class HeartStopper : Token
         hero.Hit(damage);
     }
 
-    void OnDestroy() {
+    public override void OnDestroy() {
+        base.OnDestroy();
 		if (GameManager.instance) {
 			GameManager.instance.onHeroMove -= HeroMoved;
 		}

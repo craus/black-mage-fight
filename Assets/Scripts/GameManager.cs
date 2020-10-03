@@ -16,8 +16,6 @@ public class GameManager : Singletone<GameManager> {
     public Level lastLevel;
     public Level currentLevel;
 
-
-
     public AudioSource loseSound;
 
 	public AudioSource winSound;

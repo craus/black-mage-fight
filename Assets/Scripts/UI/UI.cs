@@ -21,7 +21,11 @@ public class UI : Singletone<UI> {
     public GameObject heroHealth;
     public GameObject blackMageHealth;
     public GameObject heartstopperPeriod;
-    public GameObject statuesCounter;
+    public GameObject heartstopperPeriodText;
+	public GameObject heartstopperDamage;
+	public GameObject statuesCounter;
+
+	public GameObject heartHeal;
 
     public GameObject poisonCounter;
     public GameObject secondPoisonCounter;
@@ -184,8 +188,10 @@ public class UI : Singletone<UI> {
 
         poisonCounter.SetActive(Poison.instance);
 		poisonDamage.SetActive(Poison.instance);
-		heartstopperPeriod.SetActive(HeartStopperPeriodic.instance);
         secondPoisonCounter.SetActive(Poison.secondInstance);
+
+		heartstopperPeriod.SetActive(HeartStopperPeriodic.instance || HeartStopper.instance);
+		heartHeal.SetActive(Heart.instance);
 
 		barrelDamage.SetActive(BarrelSetter.instance);
 
@@ -315,14 +321,26 @@ public class UI : Singletone<UI> {
             secondPoisonCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", Poison.secondInstance.Timeout-Poison.secondInstance.spent, Poison.secondInstance.Timeout);
         }
 		if (HeartStopperPeriodic.instance) {
-			var text = heartstopperPeriod.GetComponentInChildren<Text>();
+			var text = heartstopperPeriodText.GetComponentInChildren<Text>();
 			var counter = HeartStopperPeriodic.instance.periodicCounter;
 			if (counter != null) {
 				text.text = string.Format("<b>{0}/{1}</b>", counter.Value(), counter.MaxValue());
 			} else {
 				text.text = "";
 			}
-        }
+			var damageText = heartstopperDamage.GetComponentInChildren<Text>();
+			damageText.text = HeartStopperPeriodic.instance.GetComponent<DamageEffect>()?.damage.ToString();
+		}
+		if (HeartStopper.instance) {
+			var text = heartstopperPeriodText.GetComponentInChildren<Text>();
+			text.text = "";
+			var damageText = heartstopperDamage.GetComponentInChildren<Text>();
+			damageText.text = HeartStopper.instance.damage.ToString();
+		}
+		if (Heart.instance) {
+			heartHeal.GetComponentInChildren<Text>().text = Heart.instance.Heal.ToString();
+		}
+
         if (StatueSetter.instance) {
             var text = statuesCreationCounter.GetComponentInChildren<Text>();
             var counter = StatueSetter.instance.GetComponent<PeriodicCounter>();
