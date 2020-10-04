@@ -32,6 +32,9 @@ public class GameRun
 	}
 
     public string Description() {
+		if (levelsCompleted >= GameLevels.instance.commonLevels.Count) {
+			return "Все уровни пройдены";
+		}
 		if (Cheats.on) {
 			return string.Format(
 				"{0} – {1} ({2}/{3})", 

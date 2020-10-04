@@ -16,7 +16,7 @@ public class BattleMusicChanger : Singletone<BattleMusicChanger>
 		if (run == null) {
 			return;
 		}
-		int musicIndex = run.levelsCompleted * musics.Count / GameLevels.instance.commonLevels.Count;
+		int musicIndex = Mathf.Clamp(run.levelsCompleted * musics.Count / GameLevels.instance.commonLevels.Count, 0, musics.Count-1);
 		if (current != musics[musicIndex]) {
 			if (current != null) {
 				current.Stop();
