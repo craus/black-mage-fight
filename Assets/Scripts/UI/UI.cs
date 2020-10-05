@@ -214,7 +214,7 @@ public class UI : Singletone<UI> {
         evilEyesCreationCounter.SetActive(EvilEyesSetter.instance);
 		evilEyesDamage.SetActive(EvilEyesSetter.instance);
 
-		monsterCreationCounter.SetActive(MonsterSetter.instance);
+		monsterCreationCounter.SetActive(MonsterSetter.instance && MonsterSetter.instance.periodicCounter.MaxValue() < 100500);
 		monsterCount.SetActive(TokenCounter.cnt[Marks.Monster] > 0);
 		monsterDamage.SetActive(MonsterSetter.instance || TokenCounter.cnt[Marks.Monster] > 0);
         timeCounter.SetActive(TimeCounter.instance);
@@ -269,7 +269,7 @@ public class UI : Singletone<UI> {
 			var text = fireDamage.GetComponentInChildren<Text>();
 			text.text = string.Format("<b>{0}</b>", FireSpawner.instance.GetComponent<Spawner>().sample.GetComponentInChildren<DamageEffect>().Damage);
 		}
-		if (MonsterSetter.instance) {
+		if (MonsterSetter.instance && MonsterSetter.instance.periodicCounter.MaxValue() < 100500) {
 			monsterCreationCounter.GetComponentInChildren<Text>().text = string.Format(
 				"<b>{0}/{1}</b>",
 				MonsterSetter.instance.periodicCounter.Value(),
