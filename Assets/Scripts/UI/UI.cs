@@ -87,8 +87,6 @@ public class UI : Singletone<UI> {
     }
 
     void Start() {
-        CloseAll();
-
 		keysUI.SetActive(false);
     }
 
