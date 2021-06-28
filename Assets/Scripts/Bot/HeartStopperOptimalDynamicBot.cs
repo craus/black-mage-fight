@@ -326,11 +326,13 @@ public class HeartStopperOptimalDynamicBot : MonoBehaviour
     }
 
     public void Update() {
-        if (Input.GetKeyDown(KeyCode.V)) {
-            PrintResult();
-        }
-        if (Input.GetKeyDown(KeyCode.M)) {
-            Move();
+        if (Cheats.on) {
+            if (Input.GetKeyDown(KeyCode.V)) {
+                PrintResult();
+            }
+            if (Input.GetKeyDown(KeyCode.M)) {
+                Move();
+            }
         }
         if (on) {
             Move();

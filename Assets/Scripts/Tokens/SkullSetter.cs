@@ -27,8 +27,10 @@ public class SkullSetter : Token
 	}
 
     public void Update() {
-        if (Input.GetKeyDown(KeyCode.V)) {
-            SetSkull();
+        if (Cheats.on) {
+            if (Input.GetKeyDown(KeyCode.V)) {
+                SetSkull();
+            }
         }
     }
 }

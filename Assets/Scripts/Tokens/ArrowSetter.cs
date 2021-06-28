@@ -14,8 +14,10 @@ public class ArrowSetter : Token
     }
 
     public void Update() {
-        if (Input.GetKeyDown(KeyCode.V)) {
-            SetArrow();
+        if (Cheats.on) {
+            if (Input.GetKeyDown(KeyCode.V)) {
+                SetArrow();
+            }
         }
     }
 }

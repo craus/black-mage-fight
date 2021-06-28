@@ -23,12 +23,14 @@ public class DebugManager : Singletone<DebugManager>
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.P)) {
-            Debug.LogFormat("Pending promises: {0}", Promise.pendingPromises);
-        }
-        if (Input.GetKeyDown(KeyCode.S)) {
-			slowAnimations ^= true;
-			Debug.LogFormat("Slow animations: {0}", slowAnimations);
+        if (Cheats.on) {
+            if (Input.GetKeyDown(KeyCode.P)) {
+                Debug.LogFormat("Pending promises: {0}", Promise.pendingPromises);
+            }
+            if (Input.GetKeyDown(KeyCode.S)) {
+                slowAnimations ^= true;
+                Debug.LogFormat("Slow animations: {0}", slowAnimations);
+            }
         }
     }
 }

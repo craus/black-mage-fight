@@ -171,13 +171,15 @@ public class GoToClosest : MonoBehaviour
 	}
 
 	public void Update() {
-		if (Input.GetKeyDown(KeyCode.M)) {
-			Debug.LogFormat("GoToClosest.Move");
-			Move();
-		}
-		if (Input.GetKeyDown(KeyCode.A)) {
-			Debug.LogFormat("GoToClosest.Autoplay = {0}", on);
-			on ^= true;
+		if (Cheats.on) {
+			if (Input.GetKeyDown(KeyCode.M)) {
+				Debug.LogFormat("GoToClosest.Move");
+				Move();
+			}
+			if (Input.GetKeyDown(KeyCode.A)) {
+				Debug.LogFormat("GoToClosest.Autoplay = {0}", on);
+				on ^= true;
+			}
 		}
 		if (on) {
 			Move();
