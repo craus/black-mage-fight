@@ -36,13 +36,8 @@ public class GameRun
 			return "Все уровни пройдены";
 		}
 		if (Cheats.on) {
-			return string.Format(
-				"{0} – {1} ({2}/{3})", 
-				DifficultyName(),
-				GameLevels.instance.commonLevels[levelsCompleted].LevelName(),
-				levelsCompleted + 1,
-				GameLevels.instance.commonLevels.Count
-			);
+			return $"{DifficultyName()} ({difficulty}/{GameLevels.instance.difficulties.Count}) – {GameLevels.instance.commonLevels[levelsCompleted].LevelName()} " +
+				$"({levelsCompleted + 1}/{GameLevels.instance.commonLevels.Count})";
 		} else {			
 			return string.Format(
 				"{0}. Уровень {1}. {2}", 

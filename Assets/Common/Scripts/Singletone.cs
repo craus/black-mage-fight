@@ -18,7 +18,7 @@ public class Singletone<T> : MonoBehaviour where T : UnityEngine.Object {
 	}
 
 	public virtual void OnDestroy() {
-		Debug.LogFormat("OnDestroy {0}", this);
+		//Debug.LogFormat("OnDestroy {0}", this);
 		_instance = null;
 	}
 }

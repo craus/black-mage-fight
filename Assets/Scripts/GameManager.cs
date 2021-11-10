@@ -96,6 +96,20 @@ public class GameManager : Singletone<GameManager> {
 		GameManager.instance.UpdateState();
 	}
 
+    public void SwitchPanicMode() {
+        restarted = true;
+        GameManager.instance.gameState.CurrentRun.panicMode ^= true;
+        Debug.LogFormat($"Panic mode changed {GameManager.instance.gameState.CurrentRun.panicMode}");
+        GameManager.instance.UpdateState();
+    }
+
+    public void SwitchContinuousRun() {
+        restarted = true;
+        GameManager.instance.gameState.CurrentRun.continuousRun ^= true;
+        Debug.LogFormat($"Continuous mode changed {GameManager.instance.gameState.CurrentRun.continuousRun}");
+        GameManager.instance.UpdateState();
+    }
+
     public bool GameOver() {
         return !LevelIsRunning();
     }
