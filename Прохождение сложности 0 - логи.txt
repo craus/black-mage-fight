@@ -1,0 +1,53 @@
+HeartStopper-0 <W> 44 sec 186 steps
+Poison 5-4 d1-0 <W> 36 sec 191 steps
+Small Bombs + Heartstopper-0 <W> 87 sec 246 steps
+Statues t3 n6-0 <W> 69 sec 373 steps
+Shotgun-0 <W> 43 sec 78 steps
+Monsters-0 <W> 67 sec 190 steps
+Fire-0 <W> 55 sec 245 steps
+Skulls speed 3 too-0 <W> 110 sec 311 steps
+Monsters + HeartStopper-0 <W> 81 sec 245 steps
+Bombs-0 <W> 55 sec 206 steps
+Poison + heartstopper-0 <W> 42 sec 213 steps
+Skulls + Statues-0 <W> 49 sec 160 steps
+Monsters with hearts-0 <L> 61 sec 177 steps
+Monsters with hearts-0 <L> 69 sec 203 steps
+Monsters with hearts-0 <W> 128 sec 329 steps
+Keys-0 <W> 89 sec 298 steps
+Fire + Poison-0 <L> 97 sec 398 steps
+Fire + Poison-0 <L> 74 sec 310 steps
+Fire + Poison-0 <W> 178 sec 610 steps
+Monsters + Timed Bombs-0 <W> 64 sec 131 steps
+Charge-0 <W> 65 sec 149 steps
+Fire + Doors-0 <W> 131 sec 453 steps
+Shotgun + poison-0 <W> 84 sec 139 steps
+Ice + HeartStopper + Hearts-0 <W> 96 sec 219 steps
+Doors + Skulls-0 <W> 143 sec 389 steps
+Illusions-0 <W> 107 sec 159 steps
+Shotgun + statues-0 <W> 111 sec 163 steps
+Ice + Fire-0 <W> 152 sec 346 steps
+Swapper-0 <W> 42 sec 87 steps
+Bombs + poison - very hard-0 <W> 51 sec 138 steps
+Skulls + Ice speed 3-0 <W> 255 sec 467 steps
+Charge + Doors-0 <W> 194 sec 314 steps
+Ultimate Bombs + Swapper-0 <W> 155 sec 151 steps
+SeeNoEvil-0 <W> 271 sec 316 steps
+Timed Bombs + HeartStopper + Hearts-0 <L> 79 sec 157 steps
+Timed Bombs + HeartStopper + Hearts-0 <W> 88 sec 210 steps
+Bombs + Ice-0 <W> 127 sec 169 steps
+Swapper + Statues-0 <W> 113 sec 158 steps
+HeartStopper + Teleport-0 <W> 57 sec 190 steps
+Poison + Skulls-0 <W> 88 sec 191 steps
+Evil Eyes + Statues-0 <W> 103 sec 183 steps
+Fire + Monsters-0 <W> 202 sec 394 steps
+Shotgun + Doors-0 <W> 76 sec 134 steps
+SeeNoEvil + HeartStopper-0 <W> 77 sec 216 steps
+Bombs + teleport-0 <W> 128 sec 192 steps
+Charge + Doors + HeartStopper (1)-0 <W> 78 sec 166 steps
+Letters + HeartStopper-0 <W> 52 sec 53 steps
+Monsters + Ultimate Bombs-0 <W> 90 sec 225 steps
+Charge + Evil Eyes-0 <W> 90 sec 119 steps
+Letters + Poison-0 <W> 135 sec 75 steps
+Skulls + Swapper-0 <W> 82 sec 90 steps
+Monsters + Evil Eyes-0 <W> 139 sec 313 steps
+Letters + Portal-0 <W> 44 sec 56 steps

@@ -18,7 +18,8 @@ public class LevelRun
 	public int blackMageHealth;
 	public int heroHealth;
 
-
+	public bool Win => blackMageHealth == 0;
+	public bool Lose => heroHealth == 0;
 
 	public string Description() {
 		string result = string.Format("{0}-{1}{6}{7} {2}:{3} ({4} steps, {5} sec)",
@@ -36,4 +37,7 @@ public class LevelRun
 		}
 		return result;
 	}
+
+	public string FullTextInfo =>
+		$"{levelID}-{difficulty} <{(Win ? "W" : (Lose ? "L" : "?"))}> {seconds} sec {steps} steps";
 }

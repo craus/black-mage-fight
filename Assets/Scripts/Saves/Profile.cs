@@ -54,4 +54,8 @@ public class Profile
         }
 		return VictoryRuns().Any(cr => cr.difficulty >= diff - delta);
     }
+
+    public string FullTextInfo =>
+        $"name: {name}\n" +
+        $"games: [\n{AllRuns().Select(r => r.FullTextInfo).Join('\n')}";
 }

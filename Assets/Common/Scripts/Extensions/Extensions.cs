@@ -514,4 +514,12 @@ public static class Extensions
     public static float Part(this UnityEngine.UI.Slider slider) {
         return (slider.value - slider.minValue) / (slider.maxValue - slider.minValue);
     }
+
+    public static string Join<T>(this IEnumerable<T> collection, string separator) {
+        return String.Join(separator, collection);
+    }
+
+    public static string Join<T>(this IEnumerable<T> collection, char separator) {
+        return Join(collection, separator + "");
+    }
 }

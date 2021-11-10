@@ -31,6 +31,9 @@ public class DebugManager : Singletone<DebugManager>
                 slowAnimations ^= true;
                 Debug.LogFormat("Slow animations: {0}", slowAnimations);
             }
+            if (Input.GetKeyDown(KeyCode.F7)) {
+                Debug.LogFormat(GameManager.instance.gameState.CurrentProfile.FullTextInfo);
+            }
         }
     }
 }

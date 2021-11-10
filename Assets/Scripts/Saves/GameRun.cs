@@ -7,16 +7,16 @@ using UnityEngine.UI;
 [Serializable]
 public class GameRun
 {
-    public bool continuousRun = false;
-    public bool panicMode = false;
-    public bool randomized = false;
-    public bool buildMode = false;
+	public bool continuousRun = false;
+	public bool panicMode = false;
+	public bool randomized = false;
+	public bool buildMode = false;
 
 	public bool interrupted = false;
 
-    public int difficulty = -1;
-    public int triesLeft = 5;
-    public int levelsCompleted = 0;
+	public int difficulty = -1;
+	public int triesLeft = 5;
+	public int levelsCompleted = 0;
 
 	/// <summary>
 	/// All attempts to play any level.
@@ -31,22 +31,22 @@ public class GameRun
 		return GameLevels.instance.commonLevels[levelsCompleted].LevelName();
 	}
 
-    public string Description() {
+	public string Description() {
 		if (levelsCompleted >= GameLevels.instance.commonLevels.Count) {
 			return "Все уровни пройдены";
 		}
 		if (Cheats.on) {
 			return $"{DifficultyName()} ({difficulty}/{GameLevels.instance.difficulties.Count}) – {GameLevels.instance.commonLevels[levelsCompleted].LevelName()} " +
 				$"({levelsCompleted + 1}/{GameLevels.instance.commonLevels.Count})";
-		} else {			
+		} else {
 			return string.Format(
-				"{0}. Уровень {1}. {2}", 
+				"{0}. Уровень {1}. {2}",
 				DifficultyName(),
 				levelsCompleted + 1,
 				GameLevels.instance.commonLevels[levelsCompleted].LevelName()
 			);
 		}
-    }
+	}
 
 	public IEnumerable<string> Modifiers() {
 		if (panicMode) {
@@ -54,6 +54,13 @@ public class GameRun
 		}
 		if (continuousRun) {
 			yield return "Последовательное прохождение";
+		}
+	}
+
+	public string FullTextInfo {
+		get {
+			var texts = levelRuns.Where(lr => lr.steps > 0).Select(r => r.FullTextInfo);
+			return $"levelRuns: [\n{String.Join("\n", texts)}";
 		}
 	}
 }
