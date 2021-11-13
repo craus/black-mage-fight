@@ -1,0 +1,66 @@
+HeartStopper-2 <L> 63 sec 285 steps
+HeartStopper-2 <W> 85 sec 305 steps
+Poison 5-4 d1-2 <W> 84 sec 257 steps
+Small Bombs + Heartstopper-2 <W> 123 sec 289 steps
+Statues t3 n6-2 <W> 142 sec 469 steps
+Shotgun-2 <L> 60 sec 90 steps
+Shotgun-2 <L> 72 sec 100 steps
+Shotgun-2 <?> 26 sec 40 steps
+Shotgun-2 <W> 61 sec 75 steps
+Monsters-2 <L> 124 sec 246 steps
+Monsters-2 <W> 139 sec 270 steps
+Fire-2 <W> 170 sec 378 steps
+Skulls speed 3 too-2 <L> 152 sec 274 steps
+Skulls speed 3 too-2 <W> 141 sec 311 steps
+Monsters + HeartStopper-2 <?> 5 sec 3 steps
+Monsters + HeartStopper-2 <?> 7 sec 9 steps
+Monsters + HeartStopper-2 <?> 2 sec 2 steps
+Monsters + HeartStopper-2 <?> 7 sec 9 steps
+Monsters + HeartStopper-2 <?> 10 sec 20 steps
+Monsters + HeartStopper-2 <?> 3 sec 3 steps
+Monsters + HeartStopper-2 <?> 2 sec 2 steps
+Monsters + HeartStopper-2 <W> 134 sec 279 steps
+Bombs-2 <W> 159 sec 293 steps
+Poison + heartstopper-2 <W> 221 sec 241 steps
+Skulls + Statues-2 <W> 126 sec 207 steps
+Monsters with hearts-2 <W> 134 sec 234 steps
+Keys-2 <W> 121 sec 243 steps
+Fire + Poison-2 <W> 215 sec 423 steps
+Monsters + Timed Bombs-2 <W> 100 sec 184 steps
+Charge-2 <W> 116 sec 199 steps
+Fire + Doors-2 <W> 178 sec 413 steps
+Shotgun + poison-2 <W> 94 sec 95 steps
+Ice + HeartStopper + Hearts-2 <W> 131 sec 271 steps
+Doors + Skulls-2 <W> 155 sec 406 steps
+Illusions-2 <W> 110 sec 169 steps
+Shotgun + statues-2 <W> 181 sec 192 steps
+Ice + Fire-2 <W> 195 sec 341 steps
+Swapper-2 <W> 124 sec 149 steps
+Bombs + poison - very hard-2 <W> 60 sec 127 steps
+Skulls + Ice speed 3-2 <W> 279 sec 545 steps
+Charge + Doors-2 <W> 250 sec 404 steps
+Ultimate Bombs + Swapper-2 <W> 147 sec 193 steps
+SeeNoEvil-2 <W> 312 sec 338 steps
+Timed Bombs + HeartStopper + Hearts-2 <W> 66 sec 137 steps
+Bombs + Ice-2 <W> 104 sec 176 steps
+Swapper + Statues-2 <W> 127 sec 181 steps
+HeartStopper + Teleport-2 <W> 96 sec 245 steps
+Poison + Skulls-2 <L> 176 sec 293 steps
+Poison + Skulls-2 <W> 200 sec 183 steps
+Evil Eyes + Statues-2 <L> 163 sec 276 steps
+Evil Eyes + Statues-2 <W> 104 sec 195 steps
+Fire + Monsters-2 <W> 120 sec 264 steps
+Shotgun + Doors-2 <W> 92 sec 92 steps
+SeeNoEvil + HeartStopper-2 <W> 166 sec 353 steps
+Bombs + teleport-2 <W> 176 sec 222 steps
+Charge + Doors + HeartStopper (1)-2 <W> 122 sec 193 steps
+Letters + HeartStopper-2 <W> 79 sec 68 steps
+Monsters + Ultimate Bombs-2 <W> 112 sec 214 steps
+Charge + Evil Eyes-2 <W> 136 sec 131 steps
+Letters + Poison-2 <W> 55 sec 74 steps
+Skulls + Swapper-2 <W> 118 sec 131 steps
+Monsters + Evil Eyes-2 <W> 223 sec 347 steps
+Letters + Portal-2 <L> 178 sec 100 steps
+Letters + Portal-2 <L> 132 sec 100 steps
+Letters + Portal-2 <?> 161 sec 90 steps
+Letters + Portal-2 <W> 137 sec 91 steps
